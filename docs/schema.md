@@ -17,6 +17,13 @@ id  | integer | not null, primary key
 follower | integer | not null, foreign key (ref. the user doing the following), indexed
 followee | integer | not null, foreign key (ref. the user being followed), indexed
 
+### likes
+col.name | dataType | details
+---------|----------|--------
+id | integer | not null, primary key
+user_id | integer | not null, foreign_key
+post_id | integer | not null, foreign_key
+
 ### posts
 col.name | dataType | details
 ---------|----------|-----------
