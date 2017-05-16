@@ -2,9 +2,6 @@
   currentUser: {
     id: 1,
     username: "LeBron James"
-    following: [
-    3, 4, 5...
-    ]
   },
   users: {
     3: {
@@ -21,13 +18,13 @@
       id: 1,
       post_type: img,
       author_id: 3,
-      img_url: http://www....
+      content: http://www....
     }
     2: {
       id: 2,
       post_type: text,
       author_id: 3,
-      text: ...
+      content: ...
     }
   }
 }

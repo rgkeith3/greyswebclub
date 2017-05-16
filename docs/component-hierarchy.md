@@ -18,3 +18,6 @@
 
 #### SearchResultsContainer
 - MiniBlogs
+
+
+<!-- on posts#index do parsing of currentusers followings on server side and only send feed posts -->

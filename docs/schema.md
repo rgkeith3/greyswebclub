@@ -22,8 +22,5 @@ col.name | dataType | details
 ---------|----------|-----------
 id | integer | not null, primary key
 post_type | string| not null
-img_url | string |
-text | text |
-audio_url | string|
-link | string|
-video_url | string
+content | string | not null
+description | string |
