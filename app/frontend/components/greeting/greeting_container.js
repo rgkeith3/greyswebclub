@@ -7,8 +7,9 @@ const mapStateToProps = ({ session }) => ({
   currentUser: session.currentUser
 })
 
-const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
+const mapDispatchToProps = ( dispatch, { location }) => ({
+  logout: () => dispatch(logout()),
+  pathname: location.pathname
 })
 
 export default connect(

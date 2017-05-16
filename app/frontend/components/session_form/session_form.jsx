@@ -28,11 +28,15 @@ class SessionForm extends React.Component {
   }
 
   renderErrors() {
-    if (this.props.errors) {
-      return this.props.errors.map((err, i) => {
-        <li key={i}>{err}</li>
-      })
-    }
+    return(
+      <ul className='session-errors'>
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    )
   }
 
   render() {
@@ -45,9 +49,7 @@ class SessionForm extends React.Component {
         <header>
           <h1>{button}</h1>
         </header>
-        <ul>
-          {this.renderErrors()}
-        </ul>
+        {this.renderErrors()}
         <input type="text"
                placeholder="Username"
                value={this.state.username}

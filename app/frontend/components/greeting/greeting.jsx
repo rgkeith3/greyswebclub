@@ -21,14 +21,28 @@ class Greeting extends React.Component {
         </section>
       )
     } else {
+      let link
+      if (this.props.pathname === '/login') {
+        link = (<Link to='/signup'>
+                  Sign Up
+                </Link>)
+      } else if (this.props.pathname === '/signup') {
+        link = (<Link to='/login'>
+                  Login
+                </Link>)
+      } else {
+        link = (<div>
+                  <Link to='/signup'>
+                    Sign Up
+                  </Link>
+                  <Link to='/login'>
+                    Login
+                  </Link>
+                </div>)
+      }
       return (
         <section className="greeting">
-          <Link to='/signup'>
-            Sign Up
-          </Link>
-          <Link to='/login'>
-            Login
-          </Link>
+          {link}
         </section>
       )
     }

@@ -1,0 +1,92 @@
+@import 'variables';
+
+@keyframes fade-up {
+  0% {margin-top: 35vh; opacity: 0;}
+  100% {margin-top: 25vh; opacity: 1;}
+}
+
+@keyframes catch-up {
+  0% {margin: 20px;}
+  100% {margin: 10px;}
+}
+
+.session-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25vh;
+  animation: fade-up;
+  animation-duration: 1.25s;
+  animation-timing-function: ease-out;
+
+  h1 {
+    font-family: $display;
+    font-style: italic;
+    font-size: 48px;
+    margin: 10px;
+    animation: catch-up;
+    animation-duration: 1.25s;
+    animation-timing-function: ease-out;
+  }
+
+  input {
+    margin: 10px;
+    font-family: $text;
+    color: $grey;
+
+    background-color: inherit;
+
+    padding: 5px;
+    border-left: 1px solid $light-grey;
+    border-top: 1px solid $light-grey;
+    border-bottom: none;
+    border-right: none;
+    border-radius: 3px;
+
+    animation: catch-up;
+    animation-duration: 1.25s;
+    animation-timing-function: ease-out;
+  }
+
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $light-grey;
+    font-family: $text;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: $light-grey;
+    font-family: $text;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: $light-grey;
+    font-family: $text;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: $light-grey;
+    font-family: $text;
+  }
+
+  button {
+    margin: 10px;
+    padding: 5px;
+    background-color: inherit;
+    border: 1px solid $light-grey;
+    border-radius: 3px;
+    color: $grey;
+    font-family: $text;
+    transition: .5s;
+
+    animation: catch-up;
+    animation-duration: 1.25s;
+    animation-timing-function: ease-out;
+  }
+
+  button:hover {
+    background-color: white;
+    transition: .5s;
+  }
+
+  button:active {
+    transition: .5s;
+    background-color: $light-grey;
+  }
+}
