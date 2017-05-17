@@ -20,7 +20,7 @@ class Api::PostsController < ApplicationController
 
   def update
     @post = Post.find_by_id(params[:id])
-'api/posts/show'
+    
     if @post.update_attributes(content: params[:post][:content])
       render :show
     else
