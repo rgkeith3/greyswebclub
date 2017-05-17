@@ -1,16 +1,50 @@
 @import 'variables';
 
 .greeting {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0px;
+  height: 10px;
+  width: 100%;
+  border-bottom: 1px solid $white;
+
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   padding: 20px;
 
+  font-family: $display;
+  font-style: italic;
+  text-shadow: 2px 2px 1px $light-grey;
 
   a {
-    font-family: $display;
-    font-style: italic;
-    color: $dark-grey;
     margin-left: 20px;
-    text-shadow: 2px 2px 1px $light-grey;
+    color: black;
+  }
+
+  h1 {
+    margin-right: 20px;
+  }
+
+  button {
+    padding: 5px;
+    background-color: inherit;
+    border: 1px solid $light-grey;
+    border-radius: 3px;
+    color: $grey;
+    font-family: $text;
+    transition: .5s;
+  }
+
+  button:hover {
+    background-color: $white;
+    transition: .5s;
+    filter: drop-shadow(2px 2px 2px $light-grey);
+  }
+
+  button:active {
+    transition: .1s;
+    background-color: $light-grey;
+    filter: drop-shadow(0px 0px 0px $white);
   }
 }

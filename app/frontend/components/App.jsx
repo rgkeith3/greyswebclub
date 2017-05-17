@@ -3,19 +3,24 @@ import { Route, Switch } from 'react-router-dom'
 
 import GreetingContainer from './greeting/greeting_container'
 import SessionFormContainer from './session_form/session_form_container'
-import { AuthRoute } from '../util/route_util'
+import DashboardContainer from './dashboard/dashboard_container'
+import { AuthRoute, DashRoute } from '../util/route_util'
 
 const App = () => (
   <div className='app'>
-    <header>
-      <Switch>
-        <Route path='/login' component={GreetingContainer} />
-        <Route path='/signup' component={GreetingContainer} />
-        <Route path='/' component={GreetingContainer} />
-      </Switch>
-    </header>
-    <AuthRoute path="/login" component={SessionFormContainer} />
-    <AuthRoute path="/signup" component={SessionFormContainer} />
+    <Switch>
+      <Route path='/login' component={GreetingContainer} />
+      <Route path='/signup' component={GreetingContainer} />
+      <Route path='/' component={GreetingContainer} />
+    </Switch>
+    <section className='site-body'>
+      <AuthRoute path="/login" component={SessionFormContainer} />
+      <AuthRoute path="/signup" component={SessionFormContainer} />
+      <DashRoute path="/" component={DashboardContainer} />
+    </section>
+    <footer className='site-footer'>
+      funthings will go here
+    </footer>
   </div>
 )
 

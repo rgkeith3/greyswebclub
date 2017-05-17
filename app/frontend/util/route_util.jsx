@@ -18,3 +18,20 @@ const mapStateToProps = state => {
 }
 
 export const AuthRoute = withRouter(connect(mapStateToProps, null)(Auth))
+
+const Dash = ({ component: Component, path, loggedIn }) => {
+  return (<Route path={path} render={(props) => (
+      loggedIn ? (
+        <div>
+          <Redirect to='/dashboard' />
+          <Component {...props} />
+        </div>
+      ) : (
+        <Redirect to='/' />
+      )
+    )} />
+  )
+}
+
+
+export const DashRoute = withRouter(connect(mapStateToProps, null)(Dash))

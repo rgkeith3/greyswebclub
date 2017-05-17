@@ -6,8 +6,8 @@
 }
 
 @keyframes catch-up {
-  0% {margin: 20px;}
-  100% {margin: 10px;}
+  0% {margin-top: 20px;}
+  100% {margin-top: 10px;}
 }
 
 .session-form {
@@ -74,7 +74,7 @@
     border-radius: 3px;
     color: $grey;
     font-family: $text;
-    transition: .5s;
+    transition: .25s;
 
     animation: catch-up;
     animation-duration: 1.25s;
@@ -83,7 +83,7 @@
 
   button:hover {
     background-color: white;
-    transition: .5s;
+    transition: .25s;
     filter: drop-shadow(2px 2px 2px $light-grey);
   }
 

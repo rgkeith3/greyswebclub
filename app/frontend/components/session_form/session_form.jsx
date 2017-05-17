@@ -9,12 +9,18 @@ class SessionForm extends React.Component {
       password: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.guestLogin = this.guestLogin.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
       this.props.history.push('/')
     }
+  }
+
+  guestLogin(e) {
+    e.preventDefault()
+    this.props.loginAsGuest()
   }
 
   handleSubmit(e) {
@@ -58,7 +64,10 @@ class SessionForm extends React.Component {
                placeholder="Password"
                value={this.state.password}
                onChange={this.update('password')} />
-        <button>{button}</button>
+        <div>
+          <button>{button}</button>
+          <button onClick={this.guestLogin}>Login as guest</button>
+        </div>
       </form>
     )
   }
