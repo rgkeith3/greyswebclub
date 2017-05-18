@@ -12,7 +12,6 @@ const postsReducer = (state = initState, action) => {
     case RECEIVE_POSTS:
       return merge({}, initState, {posts: action.posts})
     case RECEIVE_POST:
-      debugger
       return merge({}, state, { posts: {[action.post.id]: action.post}})
     case REMOVE_POST:
       let nextState = merge({}, state)

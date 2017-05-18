@@ -13,14 +13,6 @@ class PostForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount() {
-    console.log('mounting');
-  }
-
-  componentWillUnmount() {
-    console.log('unmounting');
-  }
-
   handleSubmit(e) {
     e.preventDefault()
     const post = Object.assign({}, this.state)
@@ -33,7 +25,6 @@ class PostForm extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const { fireRedirect } = this.state
 
     return(
