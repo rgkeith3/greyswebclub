@@ -1,3 +1,5 @@
-json.array! @posts do |post|
-  json.extract! post, :id, :post_type, :content
+@posts.each do |post|
+  json.set! post.id do
+    json.extract! post, :id, :post_type, :content
+  end
 end

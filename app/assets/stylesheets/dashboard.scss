@@ -1,5 +1,39 @@
 @import 'variables';
 
 .dashboard {
-  
+  margin: auto;
+  width: 50%;
+  font-family: $text;
+
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 25px;
+    border: 1px solid black;
+    border-radius: 15px;
+
+    h1:first-child {
+      border: none;
+    }
+
+    h1 {
+      border-left: 1px solid black;
+      height: 50px;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .dashboard-items {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .post {
+      min-height: 150px;
+      min-width: 200px;
+      margin-top: 30px;
+      border: 1px solid black;
+    }
+  }
 }

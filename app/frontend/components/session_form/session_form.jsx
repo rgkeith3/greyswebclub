@@ -47,9 +47,7 @@ class SessionForm extends React.Component {
 
   render() {
     const button = (this.props.formType === 'login') ? "Login": "Sign Up"
-    const link = (this.props.formType === 'login') ?
-                    () => (<Link to='/signup'>Sign Up</Link>) :
-                    () => (<Link to='/login'>Login</Link>)
+    
     return (
       <form className="session-form" onSubmit={this.handleSubmit}>
         <header>

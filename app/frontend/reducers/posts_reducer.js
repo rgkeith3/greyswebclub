@@ -3,7 +3,7 @@ import merge from 'lodash/merge'
 
 const initState = {
   posts: {},
-  errors: ["sup"]
+  errors: []
 }
 
 const postsReducer = (state = initState, action) => {
@@ -12,7 +12,8 @@ const postsReducer = (state = initState, action) => {
     case RECEIVE_POSTS:
       return merge({}, initState, {posts: action.posts})
     case RECEIVE_POST:
-      return merge({}, state, {[action.post.id]: action.post})
+      debugger
+      return merge({}, state, { posts: {[action.post.id]: action.post}})
     case REMOVE_POST:
       let nextState = merge({}, state)
       delete nextState[action.post.id]
