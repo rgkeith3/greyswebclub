@@ -18,6 +18,10 @@ class SessionForm extends React.Component {
     }
   }
 
+  componentWillMount() {
+    this.props.clearErrors()
+  }
+
   guestLogin(e) {
     e.preventDefault()
     this.props.loginAsGuest()
@@ -47,7 +51,7 @@ class SessionForm extends React.Component {
 
   render() {
     const button = (this.props.formType === 'login') ? "Login": "Sign Up"
-    
+
     return (
       <form className="session-form" onSubmit={this.handleSubmit}>
         <header>

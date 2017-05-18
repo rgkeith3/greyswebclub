@@ -37,17 +37,22 @@ More pipedream features:
 
 ### Implementation Timeline
 ------
-#### Phase 1: Backend setup and FE User Auth (2 days)
+#### Phase 1: Backend setup and FE User Auth (1 day)
 **Objective:** Functioning Rails API with front end auth
 
-#### Phase 2: Posts Model, API, and Components (2 days)
+#### Phase 2: Posts Model, API, and Components (1 day)
 **Objective:** Posts can be created, shown, edited and destroyed through the API
 
-#### Phase 3: MiniBlogs and Following (3 days)
-**Objective:** Mini overview of blogs complete with ability to follow.
+#### Phase 3: Cloudinary implementation (1 day)
+**Objective:** Users can post different types of media and posts fit seamlessly
+into the dashboard
 
-#### Phase 4: Feed (3 days)
-**Objective:** A users feed shows the posts of who they're following.
+#### Phase 4: Likes and comments (1 day)
+**Objective:** Users can like and post comments on other users posts.
 
-#### Phase 5: Reblog (2 days)
-**Objective:** Users can reblog others posts.
+#### Phase 5: Blog Show page and follows (2 day)
+**Objective:** blogs have a show page and a mini pop-up show page and users
+can follow other blogs and their feeds are only filled with the blogs they follow
+
+#### Phase 6: infinite scroll and landing page and styling(2 day)
+**Objective:** infinite scroll and complete styling, as well as a landing page

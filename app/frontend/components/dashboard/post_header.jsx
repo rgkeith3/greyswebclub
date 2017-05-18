@@ -9,8 +9,8 @@ export default () => (
     <Link to='/new/pic'>
       pic
     </Link>
-    <Link to='/new/lnk'>
-      lnk
+    <Link to='/new/url'>
+      url
     </Link>
     <Link to='/new/aud'>
       aud
