@@ -1,5 +1,8 @@
 import React from 'react'
 import { Redirect } from 'react-router'
+import Dropzone from 'react-dropzone'
+
+import FileDrop from './file_drop'
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -39,8 +42,9 @@ class PostForm extends React.Component {
     return e => this.setState({ [property]: e.target.value })
   }
 
-  updateAttachment(e) {
-    const attachment = e.currentTarget.files[0]
+
+  updateAttachment(files) {
+    const attachment = files[0]
     const fileReader = new FileReader()
     fileReader.onloadend = () => {
       this.setState({ attachmentUrl: fileReader.result, attachment})
@@ -51,10 +55,19 @@ class PostForm extends React.Component {
     } else {
       this.setState({ attachmentUrl: "", attachment: null })
     }
+
   }
 
   render() {
     const { fireRedirect } = this.state
+
+    const droppedFile = () => {
+      if (this.state.attachment) {
+        return (
+          <p>{this.state.attachment.name}: {this.state.attachment.size} bytes</p>
+        )
+      }
+    }
 
     const postField = (formType) => {
       switch (formType) {
@@ -69,12 +82,18 @@ class PostForm extends React.Component {
         case 'vid':
         case 'aud':
           return (
-            <div className='file-upload'>
-              <input type='file' onChange={this.updateAttachment} />
+            <div className="dropzone">
+              <Dropzone onDrop={this.updateAttachment} >
+                <p>drop file</p>
+              </Dropzone>
               <img className='preview' src={this.state.attachmentUrl} />
+              {droppedFile()}
             </div>
-
           )
+          // <div className='file-upload'>
+          //   <input type='file' onChange={this.updateAttachment} />
+          //   <img className='preview' src={this.state.attachmentUrl} />
+          // </div>
         default:
           (<h1>wattchu talkin bout willis</h1>)
       }
