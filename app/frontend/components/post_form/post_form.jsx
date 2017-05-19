@@ -2,8 +2,6 @@ import React from 'react'
 import { Redirect } from 'react-router'
 import Dropzone from 'react-dropzone'
 
-import FileDrop from './file_drop'
-
 class PostForm extends React.Component {
   constructor(props) {
     super(props)
@@ -18,6 +16,7 @@ class PostForm extends React.Component {
     this.updateAttachment = this.updateAttachment.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.update = this.update.bind(this)
+    this.postField = this.postField.bind(this)
   }
 
   handleSubmit(e) {
@@ -33,8 +32,6 @@ class PostForm extends React.Component {
 
     this.props.requestCreatePost(formData)
 
-    // const post = Object.assign({}, this.state)
-    // this.props.requestCreatePost(post)
     this.setState({ fireRedirect: true })
   }
 
@@ -58,51 +55,86 @@ class PostForm extends React.Component {
 
   }
 
+  postField(formType) {
+    switch (formType) {
+      case 'txt':
+      case 'url':
+        return (
+          <input type='text'
+            placeholder='...'
+            value={this.state.content}
+            onChange={this.update('content')} />)
+      case 'pic':
+        return (
+          <div className="dropzone">
+            <Dropzone onDrop={this.updateAttachment}
+                      accept="image/jpeg, image/gif, image/png">
+              <p>drop file</p>
+            </Dropzone>
+            { this.preview() }
+          </div>
+        )
+      case 'vid':
+        return (
+          <div className="dropzone">
+            <Dropzone onDrop={this.updateAttachment}
+                      accept='video/mp4'>
+              <p>drop file</p>
+            </Dropzone>
+            { this.preview() }
+          </div>
+        )
+      case 'aud':
+        return (
+          <div className="dropzone">
+            <Dropzone onDrop={this.updateAttachment}
+                      accept='audio/mp3'>
+              <p>drop file</p>
+            </Dropzone>
+            { this.preview() }
+          </div>
+        )
+      default:
+        (<h1>wattchu talkin bout willis</h1>)
+    }
+  }
+
+  preview() {
+    const data = (this.state.attachment) ?
+      (<p>{this.state.attachment.name}: {this.state.attachment.size} bytes</p>) :
+      ""
+    const image = () => {
+      if (this.state.attachment) {
+        switch(this.state.post_type) {
+          case 'pic':
+            return (<img src={this.state.attachmentUrl} />)
+          case 'vid':
+            return (<i className="fa fa-file-video-o preview" aria-hidden="true"></i>)
+          case 'aud':
+            return (<i className="fa fa-file-audio-o preview" aria-hidden="true"></i>)
+          default:
+            return ""
+        }
+      }
+    }
+    return (
+      <div className="preview">
+        { image() }
+        { data }
+      </div>
+    )
+  }
+
   render() {
     const { fireRedirect } = this.state
 
-    const droppedFile = () => {
-      if (this.state.attachment) {
-        return (
-          <p>{this.state.attachment.name}: {this.state.attachment.size} bytes</p>
-        )
-      }
-    }
 
-    const postField = (formType) => {
-      switch (formType) {
-        case 'txt':
-        case 'url':
-          return (
-            <input type='text'
-              placeholder='...'
-              value={this.state.content}
-              onChange={this.update('content')} />)
-        case 'pic':
-        case 'vid':
-        case 'aud':
-          return (
-            <div className="dropzone">
-              <Dropzone onDrop={this.updateAttachment} >
-                <p>drop file</p>
-              </Dropzone>
-              <img className='preview' src={this.state.attachmentUrl} />
-              {droppedFile()}
-            </div>
-          )
-          // <div className='file-upload'>
-          //   <input type='file' onChange={this.updateAttachment} />
-          //   <img className='preview' src={this.state.attachmentUrl} />
-          // </div>
-        default:
-          (<h1>wattchu talkin bout willis</h1>)
-      }
-    }
+
 
     return (
       <form className='post-form' onSubmit={this.handleSubmit}>
         <h1>new {this.state.post_type}</h1>
-          { postField(this.state.post_type) }
+          { this.postField(this.state.post_type) }
           { fireRedirect && (<Redirect to='/dashboard' />)}
         <button>post</button>
       </form>
