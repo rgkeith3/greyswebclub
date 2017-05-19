@@ -5,7 +5,9 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    post_data = post_params
+    post_data[:attachment] = nil if post_data[:attachment] == 'null'
+    @post = Post.new(post_data)
 
     if @post.save
       render :show
@@ -20,7 +22,7 @@ class Api::PostsController < ApplicationController
 
   def update
     @post = Post.find_by_id(params[:id])
-    
+
     if @post.update_attributes(content: params[:post][:content])
       render :show
     else
@@ -36,6 +38,6 @@ class Api::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:user_id, :post_type, :content)
+    params.require(:post).permit(:user_id, :post_type, :content, :attachment)
   end
 end

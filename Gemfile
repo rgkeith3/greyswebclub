@@ -21,6 +21,10 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'figaro'
+gem 'paperclip', '~> 5.0.0'
+gem 'aws-sdk', '>= 2.0'
+
 gem 'bcrypt'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

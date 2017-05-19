@@ -37,11 +37,11 @@ export const requestOnePost = id => dispatch => (
       () => dispatch(receivePostErrors(["Couldn't retrieve post"])))
 )
 
-export const requestCreatePost = post => dispatch => (
-  PostsApiUtil.fetchNewPost(post)
+export const requestCreatePost = formData => dispatch => {
+  return PostsApiUtil.fetchNewPost(formData)
     .then(post => dispatch(receivePost(post)),
       err => dispatch(receivePostErrors(err.responseJSON)))
-)
+}
 
 export const requestUpdatePost = post => dispatch => (
   PostsApiUtil.fetchUpdatePost(post)

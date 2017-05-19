@@ -43,7 +43,7 @@ More pipedream features:
 #### Phase 2: Posts Model, API, and Components (1 day)
 **Objective:** Posts can be created, shown, edited and destroyed through the API
 
-#### Phase 3: Cloudinary implementation (1 day)
+#### Phase 3: AWS implementation (2 day)
 **Objective:** Users can post different types of media and posts fit seamlessly
 into the dashboard
 
