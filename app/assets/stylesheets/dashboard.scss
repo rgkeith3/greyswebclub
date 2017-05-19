@@ -1,3 +1,4 @@
+
 @import 'variables';
 
 .dashboard {
@@ -36,12 +37,10 @@
       border: 1px solid $light-grey;
       padding: 20px;
 
-      video {
-        width: 100%;
-      }
 
       audio {
         width: 100%;
+        background-color: yellow;
       }
 
       img {
