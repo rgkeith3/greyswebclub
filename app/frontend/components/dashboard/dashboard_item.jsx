@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import VideoPlayer from './video_player'
-import AudioPlayer form './audio_player'
+import AudioPlayer from './audio_player'
+
 
 class DashboardItem extends React.Component{
 
@@ -21,15 +22,14 @@ class DashboardItem extends React.Component{
             <a href={this.props.post.content}>{this.props.post.content}</a>
           )
         case 'aud':
+          let audUrl = this.props.post.attachment_url
           return (
-            <audio controls preload="auto">
-              <source src={this.props.post.attachment_url} type="audio/mpeg"/>
-            </audio>
+            <AudioPlayer url={audUrl} />
           )
         case 'vid':
-          let url = this.props.post.attachment_url
+          let vidUrl = this.props.post.attachment_url
           return (
-            <VideoPlayer url={url} />
+            <VideoPlayer url={vidUrl} />
           )
         default:
           <p>Whoops, something went wrong</p>

@@ -4,13 +4,15 @@ class VideoPlayer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      played: 0
+      played: 0,
+      volume: .7,
     }
     this.togglePlay = this.togglePlay.bind(this)
     this.toggleFullscreen = this.toggleFullscreen.bind(this)
     this.updateProgressBar = this.updateProgressBar.bind(this)
     this.toggleMute = this.toggleMute.bind(this)
     this.seek = this.seek.bind(this)
+    this.updateVolume = this.updateVolume.bind(this)
   }
 
   componentDidMount() {
@@ -49,6 +51,11 @@ class VideoPlayer extends React.Component {
     this.refs.video.currentTime = time
   }
 
+  updateVolume(e) {
+    let volume = e.target.value
+    this.setState({volume}, () => this.refs.video.volume = this.state.volume)
+  }
+
   render() {
 
     return (
@@ -62,7 +69,8 @@ class VideoPlayer extends React.Component {
                  value={this.state.played}/>
           <button onClick={this.toggleMute}>mute</button>
           <input type='range' id='volume' min='0' max='1' step='0.1'
-                 value={this.state.volume}/>
+                 value={this.state.volume}
+                 onChange={this.updateVolume}/>
                <button onClick={this.toggleFullscreen}>full</button>
         </div>
         <video ref='video' loop>
