@@ -109,9 +109,9 @@ class PostForm extends React.Component {
           case 'pic':
             return (<img src={this.state.attachmentUrl} />)
           case 'vid':
-            return (<i className="fa fa-file-video-o preview" aria-hidden="true"></i>)
+            return (<i className="fa fa-file-video-o fa-5x" aria-hidden="true"></i>)
           case 'aud':
-            return (<i className="fa fa-file-audio-o preview" aria-hidden="true"></i>)
+            return (<i className="fa fa-file-audio-o fa-5x" aria-hidden="true"></i>)
           default:
             return ""
         }

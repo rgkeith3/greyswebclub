@@ -45,11 +45,25 @@ class AudioPlayer extends React.Component {
     this.setState({volume}, () => this.refs.video.volume = this.state.volume)
   }
 
+  play_pause(iconSize) {
+    let icon
+    if (this.refs.audio) {
+      icon = this.refs.audio.paused ?
+        "fa fa-play" + iconSize :
+        "fa fa-pause" + iconSize
+    } else {
+      icon = "fa fa-play" + iconSize
+    }
+    return (<i className={icon}></i>)
+  }
+
   render() {
     return(
       <div className='audio-player'>
         <div className='controls'>
-          <button onClick={this.togglePlay}>play/pause</button>
+          <div className='play-pause-button' onClick={this.togglePlay}>
+            { this.play_pause("") }
+          </div>
           <input type='range' id='seek' onChange={this.seek}
                  value={this.state.played}/>
           <button onClick={this.toggleMute}>mute</button>
