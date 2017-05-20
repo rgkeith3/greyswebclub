@@ -79,10 +79,13 @@ class VideoPlayer extends React.Component {
 
   volume() {
     let icon
-    switch (true) {
-      case (this.state.volume === 0): icon = "fa fa-volume-off"
-      case (this.state.volume < .5 && this.state.volume > 0): icon = "fa fa-volume-down"
-      default: icon = "fa fa-volume-up"
+    const vol = this.state.volume
+    if (vol > .5) {
+      icon = 'fa fa-volume-up'
+    } else if (vol < .5 && vol > 0) {
+      icon = 'fa fa-volume-down'
+    } else {
+      icon = 'fa fa-volume-off'
     }
     return (<i className={icon}></i>)
   }

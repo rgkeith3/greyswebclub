@@ -6,12 +6,14 @@ class AudioPlayer extends React.Component {
     this.state = {
       played: 0,
       volume: .7,
+      oldVolue: 0
     }
     this.togglePlay = this.togglePlay.bind(this)
     this.updateProgressBar = this.updateProgressBar.bind(this)
     this.toggleMute = this.toggleMute.bind(this)
     this.seek = this.seek.bind(this)
     this.updateVolume = this.updateVolume.bind(this)
+    this.volume = this.volume.bind(this)
   }
 
   componentDidMount() {
@@ -31,8 +33,15 @@ class AudioPlayer extends React.Component {
   }
 
   toggleMute(e) {
-    this.refs.audio.muted ?
-      this.refs.audio.muted = false : this.refs.audio.muted = true
+    if ( this.state.volume !== 0 ) {
+      let oldVolume = this.state.volume
+      let volume = 0
+      this.setState({volume, oldVolume}, () => this.refs.audio.volume = this.state.volume)
+    } else {
+      let oldVolume = 0
+      let volume = this.state.oldVolume
+      this.setState({volume, oldVolume}, () => this.refs.audio.volume = this.state.volume)
+    }
   }
 
   seek(e) {
@@ -57,6 +66,19 @@ class AudioPlayer extends React.Component {
     return (<i className={icon}></i>)
   }
 
+  volume() {
+    let icon
+    const vol = this.state.volume
+    if (vol > .5) {
+      icon = 'fa fa-volume-up'
+    } else if (vol < .5 && vol > 0) {
+      icon = 'fa fa-volume-down'
+    } else {
+      icon = 'fa fa-volume-off'
+    }
+    return (<i className={icon}></i>)
+  }
+
   render() {
     return(
       <div className='audio-player'>
@@ -66,7 +88,9 @@ class AudioPlayer extends React.Component {
           </div>
           <input type='range' id='seek' onChange={this.seek}
                  value={this.state.played}/>
-          <button onClick={this.toggleMute}>mute</button>
+          <div className="button" onClick={this.toggleMute}>
+            { this.volume() }
+          </div>
           <input type='range' id='volume' min='0' max='1' step='0.1'
                  value={this.state.volume}
                  onChange={this.updateVolume}/>

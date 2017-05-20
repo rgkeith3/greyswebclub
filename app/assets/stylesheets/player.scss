@@ -14,20 +14,23 @@
     height: 100%;
     display: flex;
 
+
+
     i {
       margin: auto;
-      padding: 40px;
+      padding: 50px;
       color: $white;
       opacity: 0;
       transition: .25s;
       z-index: 25;
 
       &:hover {
-        opacity: 1;
+        opacity: .85;
         transition: .25s;
       }
     }
   }
+
   .controls {
     position: absolute;
     display: flex;
@@ -39,9 +42,14 @@
     top: calc(100% - 36px);
     opacity: 0;
     transition: .25s;
+    background: linear-gradient(rgba(128, 128, 128, .3), rgba(0, 0, 0, 0) 75%, rgba(0,0,0,0));
 
     i {
       color: $white;
+    }
+
+    .button{
+      width: 15px;
     }
 
     #seek {
@@ -53,9 +61,87 @@
     }
 
     &:hover {
-      opacity: 1;
+      opacity: .7;
       transition: .25s;
     }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      webkit-appearance: none;
+      height: 10px;
+      border-top: 2px solid $white;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 7px;
+      width: 3px;
+      background: $white;
+      margin-top: 0px;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    input, .play-pause-overlay {
+      display: none;
+    }
+  }
+}
+
+.audio-player {
+  height: 50px;
+
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  i {
+    color: $dark-grey;
+  }
+
+  .button{
+    width: 15px;
+  }
+
+  #seek {
+    width: 50%;
+  }
+
+  #volume {
+    width: 15%;
+  }
+
+  &:hover {
+    opacity: .5;
+    transition: .25s;
+  }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  input[type=range]::-webkit-slider-runnable-track {
+    webkit-appearance: none;
+    height: 10px;
+    border-top: 2px solid $dark-grey;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 7px;
+    width: 3px;
+    background: $dark-grey;
+    margin-top: 0px;
   }
 
   @media only screen and (max-width: 768px) {

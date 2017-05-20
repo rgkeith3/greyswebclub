@@ -1,6 +1,11 @@
 
 @import 'variables';
 
+@keyframes dashboard-load {
+  0% {margin-top: 1500px; opacity: 0;}
+  100% {margin-top: 30px; opacity: 1;}
+}
+
 .dashboard {
   margin: auto;
   width: 50%;
@@ -36,6 +41,10 @@
       margin-top: 30px;
       border: 1px solid $light-grey;
       padding: 20px;
+      box-shadow: 1px 1px 10px $grey;
+      animation: dashboard-load;
+      animation-duration: 1.25s;
+      animation-timing-function: ease-out;
 
 
       audio {

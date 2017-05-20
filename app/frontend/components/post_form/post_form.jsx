@@ -128,14 +128,12 @@ class PostForm extends React.Component {
   render() {
     const { fireRedirect } = this.state
 
-
-
-
     return (
       <form className='post-form' onSubmit={this.handleSubmit}>
         <h1>new {this.state.post_type}</h1>
           { this.postField(this.state.post_type) }
           { fireRedirect && (<Redirect to='/dashboard' />)}
+        <button onClick={cancelPost}>close</button>
         <button>post</button>
       </form>
     )
