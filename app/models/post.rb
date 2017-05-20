@@ -23,4 +23,6 @@ class Post < ApplicationRecord
   content_type: { content_type: ['image/jpeg', 'image/gif', 'image/png', 'audio/mp3', 'video/mp4']}
 
   belongs_to :user
+  has_many :likes
+  has_many :likers, through: :likes, source: :user
 end

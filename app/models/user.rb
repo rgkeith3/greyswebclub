@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token!
 
   has_many :posts
+  has_many :likes
+  has_many :liked_posts, through: :likes, source: :post
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
