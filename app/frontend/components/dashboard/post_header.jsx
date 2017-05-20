@@ -2,21 +2,22 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default () => (
-  <div className="post-header">
+  <div className="post-links">
     <Link to='/new/txt'>
-      txt
+      <i className='fa fa-font fa-lg'>
+      </i>
     </Link>
     <Link to='/new/pic'>
-      pic
+      <i className='fa fa-picture-o fa-lg'></i>
     </Link>
     <Link to='/new/url'>
-      url
+      <i className='fa fa-link fa-lg'></i>
     </Link>
     <Link to='/new/aud'>
-      aud
+      <i className='fa fa-music fa-lg'></i>
     </Link>
     <Link to='/new/vid'>
-      vid
+      <i className='fa fa-film fa-lg'></i>
     </Link>
   </div>
 )

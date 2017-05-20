@@ -12,24 +12,28 @@
   font-family: $text;
 
   .post-header {
-    display: flex;
-    justify-content: space-between;
     padding-left: 25px;
     padding-right: 25px;
     border: 1px solid black;
     border-radius: 15px;
 
-    h1:first-child {
-      border: none;
-    }
+    .post-links {
+      display: flex;
+      justify-content: space-between;
 
-    h1 {
-      border-left: 1px solid black;
-      height: 50px;
-      width: 100%;
-      text-align: center;
+      h1:first-child {
+        border: none;
+      }
+
+      h1 {
+        border-left: 1px solid black;
+        height: 50px;
+        width: 100%;
+        text-align: center;
+      }
     }
   }
+
 
   .dashboard-items {
     display: flex;
@@ -41,6 +45,7 @@
       margin-top: 30px;
       border: 1px solid $light-grey;
       padding: 20px;
+      border-radius: 5px;
       box-shadow: 1px 1px 10px $grey;
       animation: dashboard-load;
       animation-duration: 1.25s;

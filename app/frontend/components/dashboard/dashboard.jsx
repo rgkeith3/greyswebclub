@@ -19,8 +19,10 @@ class Dashboard extends React.Component {
   render() {
     return (
       <section className="dashboard">
-        <Route exact path='/dashboard' component={PostHeader} />
-        <Route path='/new' component={PostFormContainer} />
+        <header className='post-header'>
+          <Route exact path='/dashboard' component={PostHeader} />
+          <Route path='/new' component={PostFormContainer} />
+        </header>
         <div className="dashboard-items">
           {this.props.posts.map(post => (
             <DashboardItem key={post.id} post={post} />

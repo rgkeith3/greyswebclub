@@ -15,6 +15,7 @@ class PostForm extends React.Component {
     }
     this.updateAttachment = this.updateAttachment.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.cancelPost = this.cancelPost.bind(this)
     this.update = this.update.bind(this)
     this.postField = this.postField.bind(this)
   }
@@ -33,6 +34,11 @@ class PostForm extends React.Component {
     this.props.requestCreatePost(formData)
 
     this.setState({ fireRedirect: true })
+  }
+
+  cancelPost(e) {
+    e.preventDefault()
+    this.setState({ fireRedirect: true})
   }
 
   update(property) {
@@ -133,7 +139,7 @@ class PostForm extends React.Component {
         <h1>new {this.state.post_type}</h1>
           { this.postField(this.state.post_type) }
           { fireRedirect && (<Redirect to='/dashboard' />)}
-        <button onClick={cancelPost}>close</button>
+        <button onClick={this.cancelPost}>close</button>
         <button>post</button>
       </form>
     )

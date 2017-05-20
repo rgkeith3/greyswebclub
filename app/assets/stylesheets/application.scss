@@ -16,6 +16,10 @@
 
 @import 'variables';
 
+@keyframes fade-up {
+  0% {margin-top: 35vh; opacity: 0;}
+  100% {margin-top: 25vh; opacity: 1;}
+}
 
 body {
   background-image: radial-gradient(ellipse farthest-corner at 50%, $white 25%, $light-grey 120%);
