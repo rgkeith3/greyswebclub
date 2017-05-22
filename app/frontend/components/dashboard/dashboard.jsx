@@ -25,7 +25,10 @@ class Dashboard extends React.Component {
         </header>
         <div className="dashboard-items">
           {this.props.posts.map(post => (
-            <DashboardItem key={post.id} post={post} />
+            <DashboardItem key={post.id}
+                           post={post}
+                           currentUserId={this.props.currentUser.id}
+                           />
           ))}
         </div>
       </section>

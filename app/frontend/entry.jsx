@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import configureStore from './store/store'
 import * as LikesActions from './actions/likes_actions'
-import * as LikeApiUtil from './util/likes_api_util'
+import * as PostsActions from './actions/posts_actions'
 
 
 import Root from './components/root'
@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.requestCreateLike = LikesActions.requestCreateLike
   window.requestDeleteLike = LikesActions.requestDeleteLike
+
+  window.requestDeletePost = PostsActions.requestDeletePost
 
   ReactDOM.render(<Root store={ store }/>, root)
 })

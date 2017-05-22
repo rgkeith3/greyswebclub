@@ -1,6 +1,6 @@
 class Api::PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.includes(:likes).all
     render :index
   end
 
@@ -17,7 +17,7 @@ class Api::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by_id(params[:id])
+    @post = Post.includes(:likers).find_by_id(params[:id])
   end
 
   def update
@@ -34,6 +34,7 @@ class Api::PostsController < ApplicationController
     @post = Post.find_by_id(params[:id])
 
     @post.destroy
+    render json: "BALETED!"
   end
 
   private

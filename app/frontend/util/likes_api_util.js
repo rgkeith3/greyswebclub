@@ -1,4 +1,4 @@
-export const fetchNewLike = ( like ) => (
+export const fetchNewLike = like => (
   $.ajax({
     method: 'POST',
     url: '/api/likes',
@@ -6,9 +6,9 @@ export const fetchNewLike = ( like ) => (
   })
 )
 
-export const fetchDestroyLike = ( id ) => (
+export const fetchDestroyLike = id => (
   $.ajax({
     method: 'DELETE',
-    url: `/api/likes/${id}`,
+    url: `/api/likes/${id}`
   })
 )

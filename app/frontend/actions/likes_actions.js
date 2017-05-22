@@ -19,14 +19,14 @@ export const receiveLikeErrors = errors => ({
   errors
 })
 
-export const requestCreateLike = like => dispatch => {
-  return LikesApiUtil.fetchNewLike(like)
+export const requestCreateLike = like => dispatch => (
+  LikesApiUtil.fetchNewLike(like)
     .then(like => dispatch(receiveLike(like)),
       err => dispatch(receiveLikeErrors(err.responseJSON)))
-}
+)
 
-export const requestDeleteLike = like => dispatch => {
-  return LikesApiUtil.fetchDestroyLike(like.id)
-    .then(() => dispatch(removeLike(like)),
+export const requestDeleteLike = id => dispatch => (
+  LikesApiUtil.fetchDestroyLike(id)
+    .then((like) => dispatch(removeLike(like)),
       err => dispatch(receiveLikeErrors(err.responseJSON)))
-}
+)

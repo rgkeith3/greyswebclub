@@ -3,7 +3,8 @@ import Dashboard from './dashboard'
 import { requestPosts } from '../../actions/posts_actions'
 import { asArray } from '../../reducers/selectors'
 
-const mapStateToProps = ({ posts }) => ({
+const mapStateToProps = ({ posts, session }) => ({
+  currentUser: session.currentUser,
   posts: asArray(posts.posts)
 })
 
