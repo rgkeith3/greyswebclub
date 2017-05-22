@@ -15,6 +15,7 @@
 #
 
 class Post < ApplicationRecord
+
   validates :user_id, :post_type, presence: true
 
   has_attached_file :attachment, default_url: 'missing.jpg'
@@ -25,4 +26,8 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :likers, through: :likes, source: :user
+
+  def self.find_by_follower(user)
+
+  end
 end

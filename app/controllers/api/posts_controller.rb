@@ -6,6 +6,7 @@ class Api::PostsController < ApplicationController
   end
 
   def explore
+    @posts = Post.all.sort_by(:created_at).limit(15)
   end
 
   def create
