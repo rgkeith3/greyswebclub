@@ -8,15 +8,10 @@ import { fetchNewLike, fetchDestroyLike } from '../../util/likes_api_util'
 class DashboardItem extends React.Component{
   constructor(props) {
     super(props)
-    this.state = {
-      liked: null
-    }
+    this.toggleLike = this.toggleLike.bind(this)
     this.content = this.content.bind(this)
     this.liked = this.liked.bind(this)
-  }
-
-  componentWillMount(){
-    this.setState({liked: this.liked})
+    this.icon = this.icon.bind(this)
   }
 
   content() {
@@ -49,14 +44,28 @@ class DashboardItem extends React.Component{
   }
 
   toggleLike() {
+    if (this.liked()) {
+      this.props.requestDeleteLike(this.props.post.likers[this.props.currentUserId])
+    } else {
+      let like = { user_id: this.props.currentUserId, post_id: this.props.post.id }
+      this.props.requestCreateLike(like)
+    }
   }
 
   liked() {
-    this.props.post.likes.includes(like => like.user_id === this.props.currentUserId)
+    return Boolean(this.props.post.likers && this.props.post.likers[this.props.currentUserId])
+  }
+
+  likes() {
+    if (this.props.post.likers && Object.keys(this.props.post.likers).length > 0) {
+      return (
+        <p>{Object.keys(this.props.post.likers).length}</p>
+        )
+    }
   }
 
   icon() {
-    this.state.liked ? 'fa fa-heart': 'fa fa-heart-o'
+    return this.liked() ? 'fa fa-heart': 'fa fa-heart-o'
   }
 
   render() {
@@ -65,8 +74,9 @@ class DashboardItem extends React.Component{
         { this.content() }
         <div className='postBottom'>
           <div className='likes'>
-            <i className={ this.icon }
-               onClick={ this.like }></i>
+            { this.likes() }
+            <i className={ this.icon() }
+               onClick={this.toggleLike}></i>
           </div>
         </div>
       </section>
