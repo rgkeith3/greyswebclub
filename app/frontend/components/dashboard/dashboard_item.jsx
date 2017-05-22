@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import VideoPlayer from './video_player'
 import AudioPlayer from './audio_player'
-import { fetchNewLike, fetchDestroyLike } from '../../util/likes_api_util'
 
 
 class DashboardItem extends React.Component{

@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import configureStore from './store/store'
-import * as LikesActions from './actions/likes_actions'
-import * as PostsActions from './actions/posts_actions'
+import * as FollowApiUtil from './util/follows_api_util'
 
 
 import Root from './components/root'
@@ -20,10 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.store = store
 
-  window.requestCreateLike = LikesActions.requestCreateLike
-  window.requestDeleteLike = LikesActions.requestDeleteLike
-
-  window.requestDeletePost = PostsActions.requestDeletePost
+  window.fetchDestroyFollow = FollowApiUtil.fetchDestroyFollow
+  window.fetchNewFollow = FollowApiUtil.fetchNewFollow
 
   ReactDOM.render(<Root store={ store }/>, root)
 })

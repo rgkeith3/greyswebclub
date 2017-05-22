@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import DashboardItem from './dashboard_item'
-import { requestPosts } from '../../actions/likes_actions'
+import { requestCreateLike, requestDeleteLike } from '../../actions/likes_actions'
 
 const mapStateToProps = ({ session }, { post }) => ({
   currentUserId: session.currentUser.id,

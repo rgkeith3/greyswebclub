@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
+  has_many :in_follows, class_name: :Follow, foreign_key: :followee_id
+  has_many :out_follows, class_name: :Follow, foreign_key: :follower_id
+  has_many :followers, through: :in_follows, source: :follower
+  has_many :followees, through: :out_follows, source: :followee
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
