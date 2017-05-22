@@ -58,7 +58,6 @@ class PostForm extends React.Component {
     } else {
       this.setState({ attachmentUrl: "", attachment: null })
     }
-
   }
 
   postField(formType) {

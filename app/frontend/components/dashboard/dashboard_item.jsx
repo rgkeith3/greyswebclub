@@ -71,6 +71,9 @@ class DashboardItem extends React.Component{
   render() {
     return (
       <section className="post" >
+        <div className='postTop'>
+          <p>{this.props.post.user.username}</p>
+        </div>
         { this.content() }
         <div className='postBottom'>
           <div className='likes'>
