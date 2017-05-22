@@ -138,8 +138,8 @@ class PostForm extends React.Component {
         <h1>new {this.state.post_type}</h1>
           { this.postField(this.state.post_type) }
           { fireRedirect && (<Redirect to='/dashboard' />)}
-        <button onClick={this.cancelPost}>close</button>
         <button>post</button>
+        <button onClick={this.cancelPost}>close</button>
       </form>
     )
   }

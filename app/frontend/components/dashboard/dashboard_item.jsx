@@ -7,8 +7,10 @@ import AudioPlayer from './audio_player'
 class DashboardItem extends React.Component{
   constructor(props) {
     super(props)
-    this.toggleLike = this.toggleLike.bind(this)
     this.content = this.content.bind(this)
+    this.followed = this.followed.bind(this)
+    this.toggleFollow = this.toggleFollow.bind(this)
+    this.toggleLike = this.toggleLike.bind(this)
     this.liked = this.liked.bind(this)
     this.icon = this.icon.bind(this)
   }
@@ -42,17 +44,43 @@ class DashboardItem extends React.Component{
     }
   }
 
+  followed() {
+    return Boolean(this.props.currentUser.followees && this.props.currentUser.followees[this.props.post.user.id])
+  }
+
+  followButton() {
+    let buttonText = "Follow"
+    let buttonClass = ""
+    if (this.followed()) {
+      buttonText = "Following"
+      buttonClass = 'following'
+    }
+    return (
+      <button className={buttonClass}
+              onClick={this.toggleFollow}>{buttonText}</button>
+    )
+  }
+
+  toggleFollow() {
+    if (this.followed()) {
+      this.props.requestDeleteFollow(this.props.currentUser.followees[this.props.post.user.id])
+    } else {
+      let follow = { followee_id: this.props.post.user.id, follower_id: this.props.currentUser.id}
+      this.props.requestCreateFollow(follow)
+    }
+  }
+
   toggleLike() {
     if (this.liked()) {
-      this.props.requestDeleteLike(this.props.post.likers[this.props.currentUserId])
+      this.props.requestDeleteLike(this.props.post.likers[this.props.currentUser.id])
     } else {
-      let like = { user_id: this.props.currentUserId, post_id: this.props.post.id }
+      let like = { user_id: this.props.currentUser.id, post_id: this.props.post.id }
       this.props.requestCreateLike(like)
     }
   }
 
   liked() {
-    return Boolean(this.props.post.likers && this.props.post.likers[this.props.currentUserId])
+    return Boolean(this.props.post.likers && this.props.post.likers[this.props.currentUser.id])
   }
 
   likes() {
@@ -72,6 +100,7 @@ class DashboardItem extends React.Component{
       <section className="post" >
         <div className='postTop'>
           <p>{this.props.post.user.username}</p>
+          { this.followButton() }
         </div>
         { this.content() }
         <div className='postBottom'>

@@ -1,7 +1,11 @@
 class Api::PostsController < ApplicationController
   def index
     @posts = Post.includes(:likes).all
+    @current_user = User.find_by_session_token(session[:session_token])
     render :index
+  end
+
+  def explore
   end
 
   def create
