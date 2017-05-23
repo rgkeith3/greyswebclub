@@ -3,10 +3,17 @@
 //thunk actions should use words like request
 //actions should use words like receive
 
-export const fetchAllPosts = () => (
+export const fetchPosts = () => (
   $.ajax({
     method: 'GET',
     url: '/api/posts'
+  })
+)
+
+export const fetchAllPosts = () => (
+  $.ajax({
+    method: 'GET',
+    url: '/api/posts/explore'
   })
 )
 

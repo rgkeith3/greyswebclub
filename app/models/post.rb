@@ -27,7 +27,4 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :likers, through: :likes, source: :user
 
-  def self.find_by_follower(user)
-
-  end
 end

@@ -6,13 +6,14 @@ import DashboardItemContainer from './dashboard_item_container'
 import PostHeader from './post_header'
 import PostFormContainer from '../post_form/post_form_container'
 
-
 class Dashboard extends React.Component {
   constructor(props) {
     super(props)
   }
 
   componentDidMount() {
+    console.log('will mount');
+    console.log(this.props.currentUser)
     this.props.requestPosts()
   }
 

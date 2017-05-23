@@ -12,11 +12,12 @@ class SessionForm extends React.Component {
     this.guestLogin = this.guestLogin.bind(this)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.loggedIn) {
-      this.props.history.push('/')
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   debugger
+  //   if (nextProps.loggedIn) {
+  //     this.props.history.push('/dashboard')
+  //   }
+  // }
 
   componentWillMount() {
     this.props.clearErrors()
@@ -25,6 +26,7 @@ class SessionForm extends React.Component {
   guestLogin(e) {
     e.preventDefault()
     this.props.loginAsGuest()
+    this.props.history.push('/dashboard')
   }
 
   handleSubmit(e) {

@@ -45,7 +45,11 @@ class DashboardItem extends React.Component{
   }
 
   followed() {
-    return Boolean(this.props.currentUser.followees && this.props.currentUser.followees[this.props.post.user.id])
+    if (this.props.currentUser) {
+      return Boolean(this.props.currentUser.followees && this.props.currentUser.followees[this.props.post.user.id])
+    } else {
+      return false
+    }
   }
 
   followButton() {
