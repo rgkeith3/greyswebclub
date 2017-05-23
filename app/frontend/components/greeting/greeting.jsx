@@ -16,7 +16,12 @@ class Greeting extends React.Component {
     if (this.props.currentUser) {
       return (
         <section className="greeting">
-          <h1>{this.props.currentUser.username}</h1>
+          <Link to='/explore'>
+            <i className='fa fa-globe fa-lg'></i>
+          </Link>
+          <Link to='/dashboard'>
+            <h1>{this.props.currentUser.username}</h1>
+          </Link>
           <button onClick={this.logout}>Logout</button>
         </section>
       )

@@ -1,64 +1,35 @@
 
 @import 'variables';
 
-@keyframes dashboard-load {
-  0% {margin-top: 1500px; opacity: 0;}
-  100% {margin-top: 30px; opacity: 1;}
-}
-
 .dashboard {
   margin: auto;
   width: 50%;
   font-family: $text;
 
   .post-header {
-    padding-left: 25px;
-    padding-right: 25px;
-    border: 1px solid black;
     border-radius: 15px;
+    min-width: 200px;
 
     .post-links {
       display: flex;
       justify-content: space-between;
 
-      h1:first-child {
+      a:first-child {
         border: none;
       }
 
-      h1 {
-        border-left: 1px solid black;
-        height: 50px;
+      a {
+        border-left: 1px solid $light-grey;
         width: 100%;
-        text-align: center;
-      }
-    }
-  }
+        color: black;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-decoration: none;
 
-
-  .dashboard-items {
-    display: flex;
-    flex-direction: column-reverse;
-
-    .post {
-      min-height: 150px;
-      min-width: 200px;
-      margin-top: 30px;
-      border: 1px solid $light-grey;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 1px 1px 10px $grey;
-      animation: dashboard-load;
-      animation-duration: 1.25s;
-      animation-timing-function: ease-out;
-
-
-      audio {
-        width: 100%;
-        background-color: yellow;
-      }
-
-      img {
-        width: 100%;
+        i {
+          filter: drop-shadow(2px 2px 2px $grey);
+        }
       }
     }
   }

@@ -1,12 +1,13 @@
 class Api::PostsController < ApplicationController
   def index
-    @posts = Post.includes(:likes).all
     @current_user = User.find_by_session_token(session[:session_token])
+    @posts = (@current_user.followed_posts + @current_user.posts).uniq.sort_by(&:created_at)
     render :index
   end
 
   def explore
-    @posts = Post.all.sort_by(:created_at).limit(15)
+    @posts = Post.all.sort_by(&:created_at)
+    render :index
   end
 
   def create
@@ -39,7 +40,6 @@ class Api::PostsController < ApplicationController
     @post = Post.find_by_id(params[:id])
 
     @post.destroy
-    render json: "BALETED!"
   end
 
   private
