@@ -1,21 +1,24 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 import GreetingContainer from './greeting/greeting_container'
 import SessionFormContainer from './session_form/session_form_container'
 import DashboardContainer from './dashboard/dashboard_container'
 import ExploreContainer from './explore/explore_container'
-import { AuthRoute, DashRoute } from '../util/route_util'
+import Welcome from './welcome'
+import { AuthRoute, ConditionalRoute, DashRoute } from '../util/route_util'
 
 const App = () => (
   <div className='app'>
     <Route path='/' component={GreetingContainer} />
     <section className='content-body'>
       <Switch>
+        <Route path="/welcome" component={Welcome} />
         <AuthRoute path="/login" component={SessionFormContainer} />
         <AuthRoute path="/signup" component={SessionFormContainer} />
         <Route path="/explore" component={ExploreContainer} />
-        <DashRoute path="/" component={DashboardContainer} />
+        <ConditionalRoute path="/dashboard" render={DashboardContainer} />
+        <DashRoute path="/" />
       </Switch>
     </section>
     <footer className='site-footer'>

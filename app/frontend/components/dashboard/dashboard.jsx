@@ -22,7 +22,7 @@ class Dashboard extends React.Component {
       <section className="dashboard">
         <header className='post-header'>
           <Route exact path='/dashboard' component={PostHeader} />
-          <Route path='/new' component={PostFormContainer} />
+          <Route path='/dashboard/new/:type' component={PostFormContainer} />
         </header>
         <div className="dashboard-items">
           {this.props.posts.map(post => (

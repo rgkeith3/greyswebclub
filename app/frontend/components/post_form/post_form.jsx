@@ -120,7 +120,7 @@ class PostForm extends React.Component {
           </div>
         )
       default:
-        (<h1>wattchu talkin bout willis</h1>)
+        (<Redirect to="/dashboard" />)
     }
   }
 
