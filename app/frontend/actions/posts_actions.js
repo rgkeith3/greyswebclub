@@ -15,9 +15,9 @@ export const receivePost = post => ({
   post
 })
 
-export const removePost = post => ({
+export const removePost = id => ({
   type: REMOVE_POST,
-  post
+  id
 })
 
 export const receivePostErrors = errors => ({
@@ -26,6 +26,12 @@ export const receivePostErrors = errors => ({
 })
 
 export const requestPosts = () => dispatch => (
+  PostsApiUtil.fetchPosts()
+    .then(posts => dispatch(receivePosts(posts)),
+      () => dispatch(receivePostErrors(["Couldn't retrieve posts"])))
+)
+
+export const requestAllPosts = () => dispatch => (
   PostsApiUtil.fetchAllPosts()
     .then(posts => dispatch(receivePosts(posts)),
       () => dispatch(receivePostErrors(["Couldn't retrieve posts"])))
@@ -49,8 +55,8 @@ export const requestUpdatePost = post => dispatch => (
       err => dispatch(receivePostErrors(err.responseJSON)))
 )
 
-export const requestDeletePost = post => dispatch => (
-  PostsApiUtil.fetchDestroyPost(post.id)
-    .then(() => dispatch(removePost(post)),
+export const requestDeletePost = id => dispatch => (
+  PostsApiUtil.fetchDestroyPost(id)
+    .then(() => dispatch(removePost(id)),
       err => dispatch(receivePostErrors(err.responseJSON)))
 )

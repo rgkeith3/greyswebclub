@@ -12,10 +12,18 @@
 
 class User < ActiveRecord::Base
   validates :username, :password_digest, :session_token, presence: true
+  validates :username, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
   after_initialize :ensure_session_token!
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
+  has_many :in_follows, class_name: :Follow, foreign_key: :followee_id
+  has_many :out_follows, class_name: :Follow, foreign_key: :follower_id
+  has_many :followers, through: :in_follows, source: :follower
+  has_many :followees, through: :out_follows, source: :followee
+  has_many :followed_posts, through: :followees, source: :posts
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)

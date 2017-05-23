@@ -19,15 +19,28 @@ const mapStateToProps = state => {
 
 export const AuthRoute = withRouter(connect(mapStateToProps, null)(Auth))
 
-const Dash = ({ component: Component, path, loggedIn }) => {
+//if you ARE logged in, render the component, else redirect to
+
+const Condition = ({ render: Component, path, loggedIn }) => {
   return (<Route path={path} render={(props) => (
       loggedIn ? (
-        <div>
-          <Redirect to='/dashboard' />
-          <Component {...props} />
-        </div>
+        <Component {...props} />
       ) : (
-        <Redirect to='/' />
+        <Redirect to='/welcome' />
+      )
+    )} />
+  )
+}
+
+
+export const ConditionalRoute = withRouter(connect(mapStateToProps, null)(Condition))
+
+const Dash = ({ path, loggedIn }) => {
+  return (<Route path={path} render={(props) => (
+      loggedIn ? (
+        <Redirect to='/dashboard' />
+      ) : (
+        <Redirect to='/welcome' />
       )
     )} />
   )

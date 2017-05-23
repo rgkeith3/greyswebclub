@@ -7,8 +7,8 @@ const mapStateToProps = ({ session }) => ({
   user_id: session.currentUser.id
 })
 
-const mapDispatchToProps = (dispatch, { location }) => {
-  const post_type = location.pathname.slice(5)
+const mapDispatchToProps = (dispatch, { match }) => {
+  const post_type = match.params.type
   return ({
     requestCreatePost: (post) => dispatch(requestCreatePost(post)),
     post_type

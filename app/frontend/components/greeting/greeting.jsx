@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 class Greeting extends React.Component {
   constructor(props) {
@@ -10,13 +10,19 @@ class Greeting extends React.Component {
   logout(e) {
     e.preventDefault()
     this.props.logout()
+      .then(this.props.history.push('/welcome'))
   }
 
   render() {
     if (this.props.currentUser) {
       return (
         <section className="greeting">
-          <h1>{this.props.currentUser.username}</h1>
+          <Link to='/explore'>
+            <i className='fa fa-globe fa-lg'></i>
+          </Link>
+          <Link to='/dashboard'>
+            <h1>{this.props.currentUser.username}</h1>
+          </Link>
           <button onClick={this.logout}>Logout</button>
         </section>
       )
@@ -49,4 +55,4 @@ class Greeting extends React.Component {
   }
 }
 
-export default Greeting
+export default withRouter(Greeting)

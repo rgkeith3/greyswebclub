@@ -26,25 +26,5 @@
     margin-right: 20px;
   }
 
-  button {
-    padding: 5px;
-    background-color: inherit;
-    border: 1px solid $light-grey;
-    border-radius: 3px;
-    color: $grey;
-    font-family: $text;
-    transition: .5s;
-  }
-
-  button:hover {
-    background-color: $white;
-    transition: .5s;
-    filter: drop-shadow(2px 2px 2px $light-grey);
-  }
-
-  button:active {
-    transition: .1s;
-    background-color: $light-grey;
-    filter: drop-shadow(0px 0px 0px $white);
-  }
+  
 }

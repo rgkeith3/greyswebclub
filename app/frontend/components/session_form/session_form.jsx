@@ -6,20 +6,19 @@ class SessionForm extends React.Component {
     super(props)
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      errors: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.guestLogin = this.guestLogin.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.loggedIn) {
-      this.props.history.push('/')
+    if (this.state.errors) {
+      this.setState({ errors: false}, this.props.clearErrors)
+    } else if (nextProps.errors.length > 0) {
+      this.setState({errors: true})
     }
-  }
-
-  componentWillMount() {
-    this.props.clearErrors()
   }
 
   guestLogin(e) {

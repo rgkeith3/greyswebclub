@@ -37,6 +37,9 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'font-awesome-sass'
 
+
+# gem 'factory_girl_rails', '~> 4.0'
+# gem 'faker'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

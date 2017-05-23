@@ -6,6 +6,13 @@
 export const fetchAllPosts = () => (
   $.ajax({
     method: 'GET',
+    url: '/api/posts/explore'
+  })
+)
+
+export const fetchPosts = () => (
+  $.ajax({
+    method: 'GET',
     url: '/api/posts'
   })
 )
