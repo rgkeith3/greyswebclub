@@ -34,12 +34,6 @@ export const requestPosts = () => dispatch => (
 export const requestAllPosts = () => dispatch => (
   PostsApiUtil.fetchAllPosts()
     .then(posts => dispatch(receivePosts(posts)),
-      () => dispatch(receivePostErrors(["Couldn't retrieve posts"])))
-)
-
-export const requestAllPosts = () => dispatch => (
-  PostsApiUtil.fetchAllPosts()
-    .then(posts => dispatch(receivePosts(posts)),
       () => dispatch(recievePostErrors(["Couldn't retrieve posts"])))
 )
 
