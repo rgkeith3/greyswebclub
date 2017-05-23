@@ -12,8 +12,6 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    console.log('will mount');
-    console.log(this.props.currentUser)
     this.props.requestPosts()
   }
 

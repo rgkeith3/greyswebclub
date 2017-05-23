@@ -24,7 +24,6 @@ class SessionForm extends React.Component {
   guestLogin(e) {
     e.preventDefault()
     this.props.loginAsGuest()
-    this.props.history.push('/dashboard')
   }
 
   handleSubmit(e) {
