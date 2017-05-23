@@ -18,7 +18,7 @@ const App = () => (
         <AuthRoute path="/signup" component={SessionFormContainer} />
         <Route path="/explore" component={ExploreContainer} />
         <ConditionalRoute path="/dashboard" render={DashboardContainer} />
-        <DashRoute path="/" render={DashboardContainer} />
+        <DashRoute path="/" />
       </Switch>
     </section>
     <footer className='site-footer'>

@@ -35,13 +35,10 @@ const Condition = ({ render: Component, path, loggedIn }) => {
 
 export const ConditionalRoute = withRouter(connect(mapStateToProps, null)(Condition))
 
-const Dash = ({ render: Component, path, loggedIn }) => {
-  return (<Route exact path={path} render={(props) => (
+const Dash = ({ path, loggedIn }) => {
+  return (<Route path={path} render={(props) => (
       loggedIn ? (
-        <div>
-          <Redirect to='/dashboard' />
-          <Component {...props} />
-        </div>
+        <Redirect to='/dashboard' />
       ) : (
         <Redirect to='/welcome' />
       )
