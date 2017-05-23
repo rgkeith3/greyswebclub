@@ -11,13 +11,15 @@ class PostForm extends React.Component {
       content: "",
       attachment: null,
       attachmentUrl: null,
-      fireRedirect: false
+      fireRedirect: false,
+      className: 'post-form'
     }
     this.updateAttachment = this.updateAttachment.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.cancelPost = this.cancelPost.bind(this)
     this.update = this.update.bind(this)
     this.postField = this.postField.bind(this)
+    this.data = this.data.bind(this)
   }
 
   handleSubmit(e) {
@@ -38,7 +40,9 @@ class PostForm extends React.Component {
 
   cancelPost(e) {
     e.preventDefault()
-    this.setState({ fireRedirect: true})
+    this.setState({ className: 'post-form out'},
+      () => setTimeout(() => this.setState({ fireRedirect: true}),1000)
+    )
   }
 
   update(property) {
@@ -61,18 +65,28 @@ class PostForm extends React.Component {
   }
 
   postField(formType) {
+
     switch (formType) {
       case 'txt':
+      return (
+        <textarea
+          rows='5'
+          placeholder='...'
+          value={this.state.content}
+          onChange={this.update('content')} />)
       case 'url':
         return (
-          <input type='text'
-            placeholder='...'
-            value={this.state.content}
-            onChange={this.update('content')} />)
+          <input type="text"
+                 placeholder='...'
+                 value={this.state.content}
+                 onChange={this.update('content')} />)
       case 'pic':
         return (
-          <div className="dropzone">
-            <Dropzone onDrop={this.updateAttachment}
+          <div className="file-drop">
+            <Dropzone className='drop-zone'
+                      activeClassName='drop-zone-active'
+                      rejectClassName='drop-zone-reject'
+                      onDrop={this.updateAttachment}
                       accept="image/jpeg, image/gif, image/png">
               <p>drop file</p>
             </Dropzone>
@@ -81,8 +95,11 @@ class PostForm extends React.Component {
         )
       case 'vid':
         return (
-          <div className="dropzone">
-            <Dropzone onDrop={this.updateAttachment}
+          <div className="file-drop">
+            <Dropzone className='drop-zone'
+                      activeClassName='drop-zone-active'
+                      rejectClassName='drop-zone-reject'
+                      onDrop={this.updateAttachment}
                       accept='video/mp4'>
               <p>drop file</p>
             </Dropzone>
@@ -91,8 +108,11 @@ class PostForm extends React.Component {
         )
       case 'aud':
         return (
-          <div className="dropzone">
-            <Dropzone onDrop={this.updateAttachment}
+          <div className="file-drop">
+            <Dropzone className='drop-zone'
+                      activeClassName='drop-zone-active'
+                      rejectClassName='drop-zone-reject'
+                      onDrop={this.updateAttachment}
                       accept='audio/mp3'>
               <p>drop file</p>
             </Dropzone>
@@ -104,10 +124,12 @@ class PostForm extends React.Component {
     }
   }
 
+  data() {
+    return (this.state.attachment) ?
+      (<p>{this.state.attachment.size} bytes</p>) :
+        ""
+  }
   preview() {
-    const data = (this.state.attachment) ?
-      (<p>{this.state.attachment.name}: {this.state.attachment.size} bytes</p>) :
-      ""
     const image = () => {
       if (this.state.attachment) {
         switch(this.state.post_type) {
@@ -125,7 +147,6 @@ class PostForm extends React.Component {
     return (
       <div className="preview">
         { image() }
-        { data }
       </div>
     )
   }
@@ -133,13 +154,20 @@ class PostForm extends React.Component {
   render() {
     const { fireRedirect } = this.state
 
+    const ready = () => (
+      !(this.state.content.length > 0 || this.state.attachment)
+    )
+
     return (
-      <form className='post-form' onSubmit={this.handleSubmit}>
+      <form className={this.state.className} onSubmit={this.handleSubmit}>
         <h1>new {this.state.post_type}</h1>
           { this.postField(this.state.post_type) }
+          { this.data() }
           { fireRedirect && (<Redirect to='/dashboard' />)}
-        <button>post</button>
-        <button onClick={this.cancelPost}>close</button>
+        <div className='buttons'>
+          <button disabled={ready()} >post</button>
+          <button onClick={this.cancelPost}>close</button>
+        </div>
       </form>
     )
   }

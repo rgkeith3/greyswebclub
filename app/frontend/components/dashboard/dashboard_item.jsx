@@ -7,12 +7,14 @@ import AudioPlayer from './audio_player'
 class DashboardItem extends React.Component{
   constructor(props) {
     super(props)
-    this.content = this.content.bind(this)
+    this.postTop = this.postTop.bind(this)
     this.followed = this.followed.bind(this)
     this.toggleFollow = this.toggleFollow.bind(this)
-    this.toggleLike = this.toggleLike.bind(this)
+    this.content = this.content.bind(this)
     this.liked = this.liked.bind(this)
     this.icon = this.icon.bind(this)
+    this.toggleLike = this.toggleLike.bind(this)
+    this.deletePost = this.deletePost.bind(this)
   }
 
   content() {
@@ -74,6 +76,28 @@ class DashboardItem extends React.Component{
     }
   }
 
+  postTop() {
+    if (this.props.post.user.id === this.props.currentUser.id) {
+      return (
+        <div className='post-top'>
+          <p>you posted this</p>
+          <i className='fa fa-times' onClick={this.deletePost}></i>
+        </div>
+      )
+    } else {
+      return (
+        <div className='post-top'>
+          <p>{this.props.post.user.username}</p>
+          { this.followButton() }
+        </div>
+      )
+    }
+  }
+
+  deletePost() {
+    this.props.requestDeletePost(this.props.post.id)
+  }
+
   toggleLike() {
     if (this.liked()) {
       this.props.requestDeleteLike(this.props.post.likers[this.props.currentUser.id])
@@ -89,8 +113,13 @@ class DashboardItem extends React.Component{
 
   likes() {
     if (this.props.post.likers && Object.keys(this.props.post.likers).length > 0) {
+      if (Object.keys(this.props.post.likers).length === 1) {
+        return (
+          <p>1 like</p>
+        )
+      }
       return (
-        <p>{Object.keys(this.props.post.likers).length}</p>
+        <p>{Object.keys(this.props.post.likers).length} likes</p>
         )
     }
   }
@@ -102,12 +131,10 @@ class DashboardItem extends React.Component{
   render() {
     return (
       <section className="post" >
-        <div className='postTop'>
-          <p>{this.props.post.user.username}</p>
-          { this.followButton() }
-        </div>
+        { this.postTop() }
         { this.content() }
-        <div className='postBottom'>
+        <div className='post-bottom'>
+          <p></p>
           <div className='likes'>
             { this.likes() }
             <i className={ this.icon() }

@@ -11,11 +11,12 @@ const App = () => (
   <div className='app'>
     <Route path='/' component={GreetingContainer} />
     <section className='content-body'>
-      <AuthRoute path="/login" component={SessionFormContainer} />
-      <AuthRoute path="/signup" component={SessionFormContainer} />
-      <Route path="/explore" component={ExploreContainer} />
-      <DashRoute path="/" />
-      <Route path="/dashboard" component={DashboardContainer} />
+      <Switch>
+        <AuthRoute path="/login" component={SessionFormContainer} />
+        <AuthRoute path="/signup" component={SessionFormContainer} />
+        <Route path="/explore" component={ExploreContainer} />
+        <DashRoute path="/" component={DashboardContainer} />
+      </Switch>
     </section>
     <footer className='site-footer'>
       funthings will go here

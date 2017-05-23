@@ -1,0 +1,103 @@
+@import 'variables';
+
+@keyframes expand-form {
+  0% {height: 15px; opacity: 0; padding: 0;}
+  50% {height: 200px; opacity: 0; padding: 20px;}
+  100% {opacity: 1;}
+}
+
+@keyframes form-out {
+  0% {opacity: 1;}
+  50% {height: 200px; opacity: 0; padding: 20px;}
+  100% {height: 15px; opacity: 0; padding: 0;}
+}
+
+.post-form {
+  animation-name: expand-form;
+  animation-duration: 1s;
+  box-sizing: border-box;
+  border: 1px solid $light-grey;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px $grey;
+  padding: 20px;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h1 {
+    font-family: $display;
+    font-style: italic;
+  }
+
+  textarea, input {
+    font-family: $text;
+    color: $grey;
+    resize: none;
+
+    background-color: inherit;
+
+    padding: 5px;
+    border: 1px solid $light-grey;
+    border-radius: 3px;
+    border-bottom: none;
+    border-right: none;
+  }
+
+  .file-drop {
+    display: flex;
+    justify-content: space-between;
+
+    .preview {
+      display: flex;
+      justify-content: space-around;
+
+      img, i {
+        max-height: 100px;
+        width: auto;
+        margin-left: 10px;
+      }
+    }
+
+  }
+
+  .drop-zone {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    border: 1px solid $light-grey;
+    border-radius: 3px;
+    border-bottom: none;
+    border-right: none;
+
+    height: 85px;
+    width: 100%;
+  }
+
+  .drop-zone-active {
+    background-image: linear-gradient(160deg, rgba(0,244,121,.3), rgba(0,0,0,0));
+  }
+
+  .drop-zone-reject {
+    background-image: linear-gradient(160deg, rgba(255,122,121,.3), rgba(0,0,0,0));
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin-left: 20px;
+    }
+  }
+  p {
+    font-size: 12px;
+  }
+}
+
+.out {
+  animation-name: form-out;
+  animation-duration: 1s;
+}

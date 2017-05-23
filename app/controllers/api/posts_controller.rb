@@ -40,7 +40,6 @@ class Api::PostsController < ApplicationController
     @post = Post.find_by_id(params[:id])
 
     @post.destroy
-    render json: "BALETED!"
   end
 
   private
