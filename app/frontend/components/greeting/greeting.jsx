@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 class Greeting extends React.Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class Greeting extends React.Component {
   logout(e) {
     e.preventDefault()
     this.props.logout()
+      .then(this.props.history.push('/'))
   }
 
   render() {
@@ -54,4 +55,4 @@ class Greeting extends React.Component {
   }
 }
 
-export default Greeting
+export default withRouter(Greeting)
