@@ -6,4 +6,43 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'faker'
+
 User.destroy_all
+
+guest = User.create({username: 'guest', password: 'password'})
+
+20.times do
+  user = User.new
+  user.username = Faker::Name.first_name
+  user.password = 'password'
+  user.save
+end
+
+users = User.all
+
+10.times do
+  users.each do |user|
+    p = Post.new
+    p.user_id = user.id
+    p.post_type = 'txt'
+    p.content = Faker::Company.catch_phrase
+    p.save
+  end
+end
+
+posts = Post.all
+
+def like(user, post)
+  l = Like.new
+  l.user_id = user.id
+  l.post_id = post.id
+  l.save
+end
+
+20.times do
+  users.each do |user|
+    post = posts.sample
+    like(user, post)
+  end
+end

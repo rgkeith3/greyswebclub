@@ -3,17 +3,17 @@
 //thunk actions should use words like request
 //actions should use words like receive
 
-export const fetchPosts = () => (
+export const fetchPosts = (count) => (
   $.ajax({
     method: 'GET',
-    url: '/api/posts'
+    url: `/api/posts?offset=${count}`
   })
 )
 
-export const fetchAllPosts = () => (
+export const fetchExplorePosts = (count) => (
   $.ajax({
     method: 'GET',
-    url: '/api/posts/explore'
+    url: `/api/posts/explore?offset=${count}`
   })
 )
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Explore from './explore'
-import { requestAllPosts } from '../../actions/posts_actions'
+import { requestExplorePosts } from '../../actions/posts_actions'
 import { asArray } from '../../reducers/selectors'
 
 const mapStateToProps = ({ posts, session }) => ({
@@ -9,7 +9,7 @@ const mapStateToProps = ({ posts, session }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  requestAllPosts: () => dispatch(requestAllPosts())
+  requestExplorePosts: (count) => dispatch(requestExplorePosts(count))
 })
 
 export default connect(

@@ -1,12 +1,15 @@
 class Api::PostsController < ApplicationController
   def index
     @current_user = User.find_by_session_token(session[:session_token])
-    @posts = (@current_user.followed_posts + @current_user.posts).uniq.sort_by(&:created_at)
+    @posts = (@current_user.followed_posts.includes(:likers, :user) +
+      @current_user.posts.includes(:likers, :user))
+        .uniq.sort_by(&:created_at)
     render :index
   end
 
   def explore
-    @posts = Post.all.order(created_at: :desc).limit(15)
+    @offset = params[:offset]
+    @posts = Post.includes(:likers, :user).all.order(created_at: :desc).limit(15).offset(@offset)
     render :index
   end
 

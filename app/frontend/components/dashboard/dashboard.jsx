@@ -11,8 +11,22 @@ class Dashboard extends React.Component {
     super(props)
   }
 
+  componentWillMount() {
+    document.addEventListener('scroll', this.handleInfiniteScrolling)
+  }
+
   componentDidMount() {
     this.props.requestPosts()
+  }
+
+  handleInfiniteScrolling() {
+    let totalHeight = document.documentElement.scrollHeight;
+    let clientHeight = document.documentElement.clientHeight;
+    let scrollTop = (document.body && document.body.scrollTop)
+      ? document.body.scrollTop : document.documentElement.scrollTop;
+    if( totalHeight - 100 < scrollTop + clientHeight  && this.state.continueFetching) {
+      this.props.requestBooks(this.state.totalBooks);
+    }
   }
 
   render() {

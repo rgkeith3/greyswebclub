@@ -12,7 +12,7 @@ const postsReducer = (state = initState, action) => {
   let nextState = merge({}, state)
   switch(action.type) {
     case RECEIVE_POSTS:
-      return merge({}, initState, { posts: action.posts })
+      return merge({}, state, { posts: action.posts })
     case RECEIVE_POST:
       return merge({}, state, { posts: { [action.post.id]: action.post }})
     case REMOVE_POST:

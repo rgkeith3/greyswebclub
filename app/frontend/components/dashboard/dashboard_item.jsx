@@ -15,6 +15,7 @@ class DashboardItem extends React.Component{
     this.icon = this.icon.bind(this)
     this.toggleLike = this.toggleLike.bind(this)
     this.deletePost = this.deletePost.bind(this)
+
   }
 
   content() {

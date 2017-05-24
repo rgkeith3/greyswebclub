@@ -1,6 +1,7 @@
 import * as PostsApiUtil from '../util/posts_api_util'
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
+export const RECEIVE_MORE_POSTS = 'RECIEVE_MORE_POSTS'
 export const RECEIVE_POST = 'RECEIVE_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS'
@@ -25,14 +26,14 @@ export const receivePostErrors = errors => ({
   errors
 })
 
-export const requestPosts = () => dispatch => (
-  PostsApiUtil.fetchPosts()
+export const requestPosts = (count) => dispatch => (
+  PostsApiUtil.fetchPosts(count)
     .then(posts => dispatch(receivePosts(posts)),
       () => dispatch(receivePostErrors(["Couldn't retrieve posts"])))
 )
 
-export const requestAllPosts = () => dispatch => (
-  PostsApiUtil.fetchAllPosts()
+export const requestExplorePosts = (count) => dispatch => (
+  PostsApiUtil.fetchExplorePosts(count)
     .then(posts => dispatch(receivePosts(posts)),
       () => dispatch(recievePostErrors(["Couldn't retrieve posts"])))
 )

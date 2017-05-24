@@ -1,13 +1,11 @@
 @import 'variables';
 
-@keyframes dashboard-load {
-  0% {margin-top: 1500px; opacity: 0;}
-  100% {margin-top: 30px; opacity: 1;}
-}
+
 
 .dashboard-items {
   display: flex;
   flex-direction: column-reverse;
+
 
 
   .post {
@@ -18,9 +16,6 @@
     padding: 20px;
     border-radius: 5px;
     box-shadow: 1px 1px 10px $grey;
-    animation: dashboard-load;
-    animation-duration: 1.25s;
-    animation-timing-function: ease-out;
 
     display: flex;
     flex-direction: column;
