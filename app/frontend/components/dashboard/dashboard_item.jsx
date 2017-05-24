@@ -129,8 +129,9 @@ class DashboardItem extends React.Component{
   }
 
   render() {
+
     return (
-      <section className="post" >
+      <section className='post' >
         { this.postTop() }
         { this.content() }
         <div className='post-bottom'>

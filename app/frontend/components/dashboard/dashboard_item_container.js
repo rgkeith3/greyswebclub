@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import DashboardItem from './dashboard_item'
 import { requestCreateLike, requestDeleteLike } from '../../actions/likes_actions'
 import { requestCreateFollow, requestDeleteFollow } from '../../actions/follows_actions'
@@ -17,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
   requestDeletePost: (id) => dispatch(requestDeletePost(id))
 })
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashboardItem)
+)(DashboardItem))
