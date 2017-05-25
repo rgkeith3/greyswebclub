@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS, RECEIVE_POST, REMOVE_POST, RECEIVE_POST_ERRORS } from '../actions/posts_actions'
+import { RECEIVE_POSTS, RECEIVE_POST, REMOVE_POST, RECEIVE_POST_ERRORS, CLEAR_POSTS } from '../actions/posts_actions'
 import { RECEIVE_LIKE, REMOVE_LIKE, RECEIVE_LIKE_ERRORS } from '../actions/likes_actions'
 import merge from 'lodash/merge'
 
@@ -18,6 +18,8 @@ const postsReducer = (state = initState, action) => {
     case REMOVE_POST:
       delete nextState.posts[action.id]
       return nextState
+    case CLEAR_POSTS:
+      return merge({}, initState)
     case RECEIVE_POST_ERRORS:
       return merge({}, state, { errors: action.errors })
     case RECEIVE_LIKE:

@@ -15,9 +15,8 @@ class DashboardItem extends React.Component{
     this.icon = this.icon.bind(this)
     this.toggleLike = this.toggleLike.bind(this)
     this.deletePost = this.deletePost.bind(this)
-
   }
-
+  
   content() {
     switch (this.props.post.post_type) {
       case 'txt':
@@ -128,6 +127,7 @@ class DashboardItem extends React.Component{
   icon() {
     return this.liked() ? 'fa fa-heart': 'fa fa-heart-o'
   }
+
 
   render() {
 

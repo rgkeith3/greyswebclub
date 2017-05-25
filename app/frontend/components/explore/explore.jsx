@@ -16,6 +16,7 @@ class Explore extends React.Component {
   }
 
   componentWillMount() {
+    this.props.clearPosts()
     document.addEventListener('scroll', this.handleScrolling)
     this.props.requestExplorePosts(this.state.post_offset)
       .then(this.setState({post_offset: this.state.post_offset += 15 }))
@@ -34,7 +35,6 @@ class Explore extends React.Component {
     if( totalHeight - 200 < scrollTop + clientHeight ) {
       this.setState({fireLoad: true}, this.fireRequest)
     }
-    console.log(document.body.scrollTop);
   }
 
   fireRequest() {
@@ -66,6 +66,10 @@ class Explore extends React.Component {
         </div>
       </section>
     )
+  }
+  componentWillUnMount() {
+    document.removeEventListener('scroll', this.handleScrolling)
+    this.props.clearPosts()
   }
 }
 

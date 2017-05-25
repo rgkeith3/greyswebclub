@@ -5,7 +5,7 @@ import { requestCreateLike, requestDeleteLike } from '../../actions/likes_action
 import { requestCreateFollow, requestDeleteFollow } from '../../actions/follows_actions'
 import { requestDeletePost } from '../../actions/posts_actions'
 
-const mapStateToProps = ({ session }, { post }) => ({
+const mapStateToProps = ({ session }, { post, }) => ({
   currentUser: session.currentUser,
   post
 })

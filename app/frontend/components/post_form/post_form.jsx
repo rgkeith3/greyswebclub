@@ -34,8 +34,7 @@ class PostForm extends React.Component {
     formData.append('post[attachment]', attachment)
 
     this.props.requestCreatePost(formData)
-
-    this.setState({ fireRedirect: true })
+      .then(this.setState({fireRedirect: true}))
   }
 
   cancelPost(e) {
@@ -152,6 +151,7 @@ class PostForm extends React.Component {
   }
 
   render() {
+
     const { fireRedirect } = this.state
 
     const ready = () => (

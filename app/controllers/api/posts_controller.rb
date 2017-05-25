@@ -8,8 +8,9 @@ class Api::PostsController < ApplicationController
   end
 
   def explore
+    @current_user = User.find_by_session_token(session[:session_token])
     @offset = params[:offset]
-    @posts = Post.includes(:likers, :user).all.order(created_at: :desc).limit(15).offset(@offset)
+    @posts = Post.includes(:likers, :user).where.not(user_id: @current_user.id).order(created_at: :desc).limit(15).offset(@offset)
     render :index
   end
 

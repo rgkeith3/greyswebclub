@@ -4,6 +4,7 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const RECEIVE_MORE_POSTS = 'RECIEVE_MORE_POSTS'
 export const RECEIVE_POST = 'RECEIVE_POST'
 export const REMOVE_POST = 'REMOVE_POST'
+export const CLEAR_POSTS = 'CLEAR_POSTS'
 export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS'
 
 export const receivePosts = posts => ({
@@ -26,8 +27,12 @@ export const receivePostErrors = errors => ({
   errors
 })
 
-export const requestPosts = (count) => dispatch => (
-  PostsApiUtil.fetchPosts(count)
+export const clearPosts = () => ({
+  type: CLEAR_POSTS
+})
+
+export const requestPosts = () => dispatch => (
+  PostsApiUtil.fetchPosts()
     .then(posts => dispatch(receivePosts(posts)),
       () => dispatch(receivePostErrors(["Couldn't retrieve posts"])))
 )

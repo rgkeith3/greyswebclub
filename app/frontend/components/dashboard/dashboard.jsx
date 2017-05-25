@@ -12,31 +12,26 @@ class Dashboard extends React.Component {
   }
 
   componentWillMount() {
-    document.addEventListener('scroll', this.handleInfiniteScrolling)
-  }
-
-  componentDidMount() {
+    this.props.clearPosts()
     this.props.requestPosts()
   }
 
-  handleInfiniteScrolling() {
-    let totalHeight = document.documentElement.scrollHeight;
-    let clientHeight = document.documentElement.clientHeight;
-    let scrollTop = (document.body && document.body.scrollTop)
-      ? document.body.scrollTop : document.documentElement.scrollTop;
-    if( totalHeight - 100 < scrollTop + clientHeight  && this.state.continueFetching) {
-      this.props.requestBooks(this.state.totalBooks);
+  animation() {
+    if (this.state.animate) {
+      return 'dashboard-items dashboard-animate'
+    } else {
+      return 'dashboard-items'
     }
   }
 
   render() {
     return (
       <section className="dashboard">
-        <header className='post-header'>
+        <header className='post-header' onClick={ this.turnOffAnimation }>
           <Route exact path='/dashboard' component={PostHeader} />
-          <Route path='/dashboard/new/:type' component={PostFormContainer} />
+          <Route path='/dashboard/new/:type' component={PostFormContainer}/>
         </header>
-        <div className="dashboard-items">
+        <div className='dashboard-items dashboard-animate'>
           {this.props.posts.map(post => (
             <DashboardItemContainer key={post.id}
                            post={post}
@@ -46,6 +41,8 @@ class Dashboard extends React.Component {
       </section>
     )
   }
+
+
 }
 
 export default Dashboard
