@@ -17,6 +17,13 @@ export const fetchExplorePosts = (count) => (
   })
 )
 
+export const fetchUsersPosts = id => (
+  $.ajax({
+    method: 'GET',
+    url: `/api/posts/user?user_id=${id}`
+  })
+)
+
 export const fetchNewPost = formData => (
   $.ajax({
     method: 'POST',

@@ -7,19 +7,19 @@ class Explore extends React.Component {
   constructor(props){
     super(props)
     this.handleScrolling = this.handleScrolling.bind(this)
+    this.handleScrolling = throttle(this.handleScrolling, 500)
     this.fireRequest = this.fireRequest.bind(this)
     this.animation = this.animation.bind(this)
 
     this.state = {
       post_offset: 0,
-      fireLoad: false,
       animate: true
     }
   }
 
   componentWillMount() {
     this.props.clearPosts()
-    document.addEventListener('scroll', throttle(this.handleScrolling, 500))
+    document.addEventListener('scroll', this.handleScrolling)
     this.props.requestExplorePosts(this.state.post_offset)
       .then(this.setState({post_offset: this.state.post_offset += 15 }))
   }
@@ -31,14 +31,13 @@ class Explore extends React.Component {
     let clientHeight = document.documentElement.clientHeight
     let scrollTop = (document.body && document.body.scrollTop)
       ? document.body.scrollTop : document.documentElement.scrollTop
-    if( totalHeight - 500 < scrollTop + clientHeight ) {
+    if( totalHeight - 700 < scrollTop + clientHeight ) {
 
       this.fireRequest()
     }
   }
 
   fireRequest() {
-    document.removeEventListener('scroll', this.handleScrolling)
     this.props.requestExplorePosts(this.state.post_offset)
       .then(this.setState({post_offset: this.state.post_offset + 15}))
   }
@@ -64,7 +63,7 @@ class Explore extends React.Component {
       </section>
     )
   }
-  componentWillUnMount() {
+  componentWillUnmount() {
     document.removeEventListener('scroll', this.handleScrolling)
     this.props.clearPosts()
   }

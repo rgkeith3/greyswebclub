@@ -5,6 +5,7 @@ import GreetingContainer from './greeting/greeting_container'
 import SessionFormContainer from './session_form/session_form_container'
 import DashboardContainer from './dashboard/dashboard_container'
 import ExploreContainer from './explore/explore_container'
+import UserDetailContainer from './user_detail/user_detail_container'
 import Welcome from './welcome'
 import { AuthRoute, ProtectedRoute, DashRoute } from '../util/route_util'
 
@@ -16,6 +17,7 @@ const App = () => (
         <AuthRoute path="/login" component={SessionFormContainer} />
         <AuthRoute path="/signup" component={SessionFormContainer} />
         <AuthRoute path="/welcome" component={Welcome} />
+        <Route path="/user/:id" component={UserDetailContainer} />
         <Route path="/explore" component={ExploreContainer} />
         <ProtectedRoute path="/dashboard" render={DashboardContainer} />
         <DashRoute path="/" />

@@ -59,7 +59,11 @@ class Greeting extends React.Component {
             <h1>users</h1>
             <ul>
               {this.props.results.users.map(user => (
-                <li key={user.id}>{user.username}</li>
+                <li key={user.id}>
+                  <Link to={`/user/${user.id}`}>
+                    {user.username}
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>
@@ -72,7 +76,11 @@ class Greeting extends React.Component {
             <h1>posts</h1>
             <ul>
               {this.props.results.posts.map(post => (
-                <li key={post.id}>{post.content}</li>
+                <li key={post.id}>
+                  <Link to={`/posts/${post.id}`}>
+                    {post.content}
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>
@@ -104,6 +112,9 @@ class Greeting extends React.Component {
               <i className='fa fa-globe fa-lg'></i>
             </Link>
             <Link to='/dashboard'>
+              <i className='fa fa-home fa-lg'></i>
+            </Link>
+            <Link to={`/user/${this.props.currentUser.id}`}>
               <h1>{this.props.currentUser.username}</h1>
             </Link>
             <button onClick={this.logout}>Logout</button>

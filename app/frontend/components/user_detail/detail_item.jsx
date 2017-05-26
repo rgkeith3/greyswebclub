@@ -1,15 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import VideoPlayer from './video_player'
-import AudioPlayer from './audio_player'
+import VideoPlayer from '../dashboard/video_player'
+import AudioPlayer from '../dashboard/audio_player'
 
 
-class DashboardItem extends React.Component{
+class DetailItem extends React.Component{
   constructor(props) {
     super(props)
     this.postTop = this.postTop.bind(this)
-    this.followed = this.followed.bind(this)
-    this.toggleFollow = this.toggleFollow.bind(this)
     this.content = this.content.bind(this)
     this.liked = this.liked.bind(this)
     this.icon = this.icon.bind(this)
@@ -46,36 +44,6 @@ class DashboardItem extends React.Component{
     }
   }
 
-  followed() {
-    if (this.props.currentUser) {
-      return Boolean(this.props.currentUser.followees && this.props.currentUser.followees[this.props.post.user.id])
-    } else {
-      return false
-    }
-  }
-
-  followButton() {
-    let buttonText = "Follow"
-    let buttonClass = ""
-    if (this.followed()) {
-      buttonText = "Following"
-      buttonClass = 'following'
-    }
-    return (
-      <button className={buttonClass}
-              onClick={this.toggleFollow}>{buttonText}</button>
-    )
-  }
-
-  toggleFollow() {
-    if (this.followed()) {
-      this.props.requestDeleteFollow(this.props.currentUser.followees[this.props.post.user.id])
-    } else {
-      let follow = { followee_id: this.props.post.user.id, follower_id: this.props.currentUser.id}
-      this.props.requestCreateFollow(follow)
-    }
-  }
-
   postTop() {
     if (this.props.post.user.id === this.props.currentUser.id) {
       return (
@@ -88,7 +56,6 @@ class DashboardItem extends React.Component{
       return (
         <div className='post-top'>
           <p>{this.props.post.user.username}</p>
-          { this.followButton() }
         </div>
       )
     }
@@ -102,6 +69,7 @@ class DashboardItem extends React.Component{
     if (this.liked()) {
       this.props.requestDeleteLike(this.props.post.likers[this.props.currentUser.id])
     } else {
+      this.props.receivePost(this.props.post)
       let like = { user_id: this.props.currentUser.id, post_id: this.props.post.id }
       this.props.requestCreateLike(like)
     }
@@ -148,4 +116,4 @@ class DashboardItem extends React.Component{
   }
 }
 
-export default DashboardItem
+export default DetailItem

@@ -11,6 +11,25 @@
   width: 50%;
   font-family: $text;
 
+  .user-show-header {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+
+    h1 {
+      font-family: $display;
+      font-style: italic;
+      font-size: 28px;
+      margin: auto;
+      margin-bottom: 20px;
+
+    }
+
+    button {
+      margin: auto;
+    }
+  }
+
   .post-header {
     border-radius: 15px;
     min-width: 200px;

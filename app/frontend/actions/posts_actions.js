@@ -40,7 +40,13 @@ export const requestPosts = () => dispatch => (
 export const requestExplorePosts = (count) => dispatch => (
   PostsApiUtil.fetchExplorePosts(count)
     .then(posts => dispatch(receivePosts(posts)),
-      () => dispatch(recievePostErrors(["Couldn't retrieve posts"])))
+      () => dispatch(receivePostErrors(["Couldn't retrieve posts"])))
+)
+
+export const requestUserPosts = (id) => dispatch => (
+  PostsApiUtil.fetchUsersPosts(id)
+    .then(posts => dispatch(receivePosts(posts)),
+      () => dispatch(receivePostErrors(["Couldn't retrieve posts"])))
 )
 
 export const requestOnePost = id => dispatch => (

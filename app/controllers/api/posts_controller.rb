@@ -14,6 +14,12 @@ class Api::PostsController < ApplicationController
     render :index
   end
 
+  def user
+    @user_id = params[:user_id]
+    @posts = Post.includes(:likers, :user).where(user_id: @user_id).order(created_at: :desc)
+    render :index
+  end
+
   def create
     post_data = post_params
     post_data[:attachment] = nil if post_data[:attachment] == 'null'
