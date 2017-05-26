@@ -66,7 +66,7 @@ class UserDetail extends React.Component {
         <section className="dashboard">
           <header className="user-show-header">
             <h1>{this.props.userDetail.username}</h1>
-            { this.props.currentUser.id !== parseInt(this.props.userId) &&
+            { (this.props.currentUser && this.props.currentUser.id !== parseInt(this.props.userId)) &&
               this.followButton()
             }
           </header>

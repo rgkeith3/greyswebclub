@@ -39,7 +39,7 @@ class Greeting extends React.Component {
   logout(e) {
     e.preventDefault()
     this.props.logout()
-      .then(this.props.history.push('/welcome'))
+      .then(this.props.history.push('/'))
   }
 
   exitSearch() {

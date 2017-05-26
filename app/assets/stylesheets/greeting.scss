@@ -93,6 +93,11 @@
         padding: 5px;
         transition: .5s;
 
+        a {
+          margin: 0px;
+          text-decoration: none;
+        }
+
         &:hover {
           background-image: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
           transition: .12s;

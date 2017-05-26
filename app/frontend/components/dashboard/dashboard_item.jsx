@@ -77,7 +77,7 @@ class DashboardItem extends React.Component{
   }
 
   postTop() {
-    if (this.props.post.user.id === this.props.currentUser.id) {
+    if (this.props.currentUser && (this.props.post.user.id === this.props.currentUser.id)) {
       return (
         <div className='post-top'>
           <p>you posted this</p>
@@ -88,7 +88,7 @@ class DashboardItem extends React.Component{
       return (
         <div className='post-top'>
           <p>{this.props.post.user.username}</p>
-          { this.followButton() }
+          { this.props.currentUser && this.followButton() }
         </div>
       )
     }
@@ -139,8 +139,10 @@ class DashboardItem extends React.Component{
           <p></p>
           <div className='likes'>
             { this.likes() }
-            <i className={ this.icon() }
+            {this.props.currentUser &&
+              <i className={ this.icon() }
                onClick={this.toggleLike}></i>
+           }
           </div>
         </div>
       </section>

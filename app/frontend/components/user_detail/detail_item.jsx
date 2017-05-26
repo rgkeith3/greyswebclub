@@ -45,7 +45,7 @@ class DetailItem extends React.Component{
   }
 
   postTop() {
-    if (this.props.post.user.id === this.props.currentUser.id) {
+    if (this.props.currentUser && (this.props.post.user.id === this.props.currentUser.id)) {
       return (
         <div className='post-top'>
           <p>you posted this</p>
@@ -107,8 +107,9 @@ class DetailItem extends React.Component{
           <p></p>
           <div className='likes'>
             { this.likes() }
-            <i className={ this.icon() }
-               onClick={this.toggleLike}></i>
+            {this.props.currentUser &&
+              <i className={ this.icon() }
+               onClick={this.toggleLike}></i>}
           </div>
         </div>
       </section>
