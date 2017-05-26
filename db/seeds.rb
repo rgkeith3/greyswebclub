@@ -9,6 +9,9 @@
 require 'faker'
 
 User.destroy_all
+Post.destroy_all
+Like.destroy_all
+Follow.destroy_all
 
 guest = User.create({username: 'guest', password: 'password'})
 
