@@ -14,19 +14,27 @@ guest = User.create({username: 'guest', password: 'password'})
 
 20.times do
   user = User.new
-  user.username = Faker::Name.first_name
+  user.username = Faker::Internet.user_name
   user.password = 'password'
   user.save
 end
 
 users = User.all
 
-10.times do
+20.times do
   users.each do |user|
     p = Post.new
     p.user_id = user.id
-    p.post_type = 'txt'
-    p.content = Faker::Company.catch_phrase
+    p.post_type = ['txt', 'url', 'pic'].sample
+    if p.post_type == 'txt'
+      p.content  = Faker::ChuckNorris.fact
+    elsif p.post_type == 'url'
+      p.content = Faker::Internet.url
+    else
+      image = 'giphy ' + (['(1)','(2)','(3)',]).sample + '.gif'
+      path = Rails.root.join('app','assets','images', image)
+      p.attachment = File.open(path)
+    end
     p.save
   end
 end
@@ -40,7 +48,7 @@ def like(user, post)
   l.save
 end
 
-20.times do
+50.times do
   users.each do |user|
     post = posts.sample
     like(user, post)
