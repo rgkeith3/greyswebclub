@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'static_pages#root'
 
   namespace :api, default: {format: :json} do
@@ -9,5 +10,6 @@ Rails.application.routes.draw do
     end
     resources :likes, only: [:create, :destroy]
     resources :follows, only: [:create, :destroy]
+    resources :search, only: [:index]
   end
 end

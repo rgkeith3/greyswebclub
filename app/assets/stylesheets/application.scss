@@ -26,10 +26,11 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+  color: $black;
 }
 
 #gradient {
-  background-color: black;
+  background-color: $black;
   opacity: 0;
   position:fixed;
   height: 100vh;

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import configureStore from './store/store'
-import * as FollowApiUtil from './util/follows_api_util'
+import {requestSearch, clearSearch} from './actions/search_actions'
 
 
 import Root from './components/root'
@@ -19,9 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root')
 
   window.store = store
-
-  window.fetchDestroyFollow = FollowApiUtil.fetchDestroyFollow
-  window.fetchNewFollow = FollowApiUtil.fetchNewFollow
 
   ReactDOM.render(<Root store={ store }/>, root)
 })

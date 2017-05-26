@@ -1,11 +1,16 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import { debounce } from 'lodash'
 
 class Greeting extends React.Component {
   constructor(props) {
     super(props)
     this.logout = this.logout.bind(this)
     this.handleSearchInput = this.handleSearchInput.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this)
+    this.search = debounce(this.search, 500)
+    this.results = this.results.bind(this)
+    this.exitSearch = this.exitSearch.bind(this)
     this.state = {
       query: ""
     }
@@ -13,18 +18,74 @@ class Greeting extends React.Component {
 
   handleSearchInput(e) {
     this.setState({query: e.target.value}, () => {
-      console.log(this.state.query)
+      this.search()
     })
   }
 
   handleKeyDown(e) {
-    console.log(e.keyCode)
+    if (e.keyCode === 13) {
+      this.search()
+    }
+  }
+
+  search() {
+    if (this.state.query.length > 0) {
+      this.props.requestSearch(this.state.query)
+    } else {
+      this.props.clearSearch()
+    }
   }
 
   logout(e) {
     e.preventDefault()
     this.props.logout()
       .then(this.props.history.push('/welcome'))
+  }
+
+  exitSearch() {
+    $('.search-results').addClass('exit-search')
+    setTimeout(() => this.props.clearSearch(), 500)
+    setTimeout(() => this.setState({query: ""}), 500)
+    document.removeEventListener('click', this.exitSearch)
+    console.log('exit')
+  }
+
+  results() {
+    if (this.props.results.posts || this.props.results.users) {
+      document.addEventListener('click', this.exitSearch)
+      let users
+      if (this.props.results.users.length > 0) {
+        users = (
+          <div className="user-results">
+            <h1>users</h1>
+            <ul>
+              {this.props.results.users.map(user => (
+                <li key={user.id}>{user.username}</li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+      let posts
+      if (this.props.results.posts.length > 0) {
+        posts = (
+          <div className="post-results">
+            <h1>posts</h1>
+            <ul>
+              {this.props.results.posts.map(post => (
+                <li key={post.id}>{post.content}</li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+      return (
+        <div className="search-results">
+          {users}
+          {posts}
+        </div>
+      )
+    }
   }
 
   render() {
@@ -37,6 +98,7 @@ class Greeting extends React.Component {
                    placeholder="Search"
                    onChange={this.handleSearchInput}
                    onKeyDown={this.handleKeyDown}/>
+            { this.results() }
           </div>
           <div className="right-side">
             <Link to='/explore'>
@@ -77,6 +139,7 @@ class Greeting extends React.Component {
                    placeholder="Search"
                    onChange={this.handleSearchInput}
                    onKeyDown={this.handleKeyDown}/>
+            { this.results() }
           </div>
           <div className="right-side">
             {link}
