@@ -47,7 +47,6 @@ class Greeting extends React.Component {
     setTimeout(() => this.props.clearSearch(), 500)
     setTimeout(() => this.setState({query: ""}), 500)
     document.removeEventListener('click', this.exitSearch)
-    console.log('exit')
   }
 
   results() {

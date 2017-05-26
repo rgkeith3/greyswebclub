@@ -25,15 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('scroll', () => {
   let scroll = document.body.scrollTop
-
-  // let red = parseInt(255 - (255 * (scroll / 30000)))
-  // let green = parseInt(244 - (244 * (scroll / 30000)))
-  // let blue = parseInt(242 - (242 * (scroll / 30000)))
-  //
-  // let color = "rgb(" + red + ", " + green + ", " + blue + ")"
-
   let opacity = (scroll / 30000).toString()
-
   let grad = document.getElementById('gradient')
 
   grad.style.opacity = opacity

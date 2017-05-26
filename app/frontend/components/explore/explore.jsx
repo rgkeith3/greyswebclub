@@ -1,4 +1,5 @@
 import React from 'react'
+import { throttle } from 'lodash'
 
 import DashboardItemContainer from '../dashboard/dashboard_item_container'
 
@@ -8,6 +9,7 @@ class Explore extends React.Component {
     this.handleScrolling = this.handleScrolling.bind(this)
     this.fireRequest = this.fireRequest.bind(this)
     this.animation = this.animation.bind(this)
+
     this.state = {
       post_offset: 0,
       fireLoad: false,
@@ -17,14 +19,11 @@ class Explore extends React.Component {
 
   componentWillMount() {
     this.props.clearPosts()
-    document.addEventListener('scroll', this.handleScrolling)
+    document.addEventListener('scroll', throttle(this.handleScrolling, 500))
     this.props.requestExplorePosts(this.state.post_offset)
       .then(this.setState({post_offset: this.state.post_offset += 15 }))
   }
 
-  componentDidUpdate() {
-    document.addEventListener('scroll', this.handleScrolling)
-  }
 
 
   handleScrolling() {
@@ -32,18 +31,16 @@ class Explore extends React.Component {
     let clientHeight = document.documentElement.clientHeight
     let scrollTop = (document.body && document.body.scrollTop)
       ? document.body.scrollTop : document.documentElement.scrollTop
-    if( totalHeight - 200 < scrollTop + clientHeight ) {
-      this.setState({fireLoad: true}, this.fireRequest)
+    if( totalHeight - 500 < scrollTop + clientHeight ) {
+
+      this.fireRequest()
     }
   }
 
   fireRequest() {
-    this.setState({animate: false})
     document.removeEventListener('scroll', this.handleScrolling)
-    if (this.state.fireLoad) {
-      this.props.requestExplorePosts(this.state.post_offset)
-        .then(this.setState({fireLoad: false, post_offset: this.state.post_offset + 15}))
-    }
+    this.props.requestExplorePosts(this.state.post_offset)
+      .then(this.setState({post_offset: this.state.post_offset + 15}))
   }
 
   animation() {
