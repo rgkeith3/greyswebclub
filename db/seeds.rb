@@ -54,3 +54,13 @@ end
     like(user, post)
   end
 end
+
+20.times do
+  users.each do |user|
+    user2 = users.sample
+    while user2.id == user.id
+      user2 = users.sample
+    end
+    Follow.create({follower_id: user.id, followee_id: user2.id})
+  end
+end
