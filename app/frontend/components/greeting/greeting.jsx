@@ -16,6 +16,12 @@ class Greeting extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.currentUser && !nextProps.currentUser) {
+      setTimeout(this.props.history.push('/'), 1000)
+    }
+  }
+
   handleSearchInput(e) {
     this.setState({query: e.target.value}, () => {
       this.search()
@@ -39,7 +45,6 @@ class Greeting extends React.Component {
   logout(e) {
     e.preventDefault()
     this.props.logout()
-      .then(this.props.history.push('/'))
   }
 
   exitSearch() {
