@@ -24,6 +24,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'figaro'
 gem 'paperclip', '~> 5.0.0'
 gem 'aws-sdk', '>= 2.0'
+gem 's3_direct_upload' # direct upload form helper and assets
 
 gem 'bcrypt'
 # Use jquery as the JavaScript library
