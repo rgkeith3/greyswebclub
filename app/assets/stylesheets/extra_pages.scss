@@ -1,0 +1,43 @@
+@import 'variables';
+
+.extra-page-container {
+  min-height: 82vh;
+  width: 50vw;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  h1 {
+    margin: 20px;
+    font-family: $display;
+    font-style: italic;
+    font-size: 36px;
+    text-shadow: 1px 1px 2px $grey;
+  }
+
+  h2 {
+    font-family: $text;
+    font-style: italic;
+    font-size: 18px;
+  }
+
+  li {
+    font-family: $text;
+    font-size: 18px;
+    margin: 5px;
+  }
+
+  p {
+    margin: 15px;
+    font-family: $text;
+    font-size: 14px;
+  }
+
+  li {
+    list-style: decimal;
+  }
+}

@@ -18,6 +18,13 @@
   justify-content: space-between;
   align-items: center;
 
+  a {
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   .right-side {
     display: flex;
     justify-content: flex-end;
@@ -26,20 +33,31 @@
     font-family: $display;
     font-style: italic;
     text-shadow: 2px 2px 1px $light-grey;
+    a {
+      margin-left: 20px;
+      color:$black;
+    }
+
+    h1 {
+      margin-right: 20px;
+    }
   }
 
-  a {
-    margin-left: 20px;
-    color:$black;
-  }
-
-  h1 {
-    margin-right: 20px;
-  }
 
   .left-side {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    h1 {
+      color: $black;
+      font-family: $display;
+      font-style: italic;
+      text-shadow: 2px 2px 1px $light-grey;
+    }
 
     input {
+      margin-left: 20px;
       width: 40vw;
       font-family: $text;
       color:$black;

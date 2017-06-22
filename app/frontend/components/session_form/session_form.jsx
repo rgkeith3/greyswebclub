@@ -52,24 +52,24 @@ class SessionForm extends React.Component {
     const button = (this.props.formType === 'login') ? "Login": "Sign Up"
 
     return (
-      <form className="session-form" onSubmit={this.handleSubmit}>
-        <header>
-          <h1>{button}</h1>
-        </header>
-        {this.renderErrors()}
-        <input type="text"
-               placeholder="Username"
-               value={this.state.username}
-               onChange={this.update('username')} />
-        <input type="password"
-               placeholder="Password"
-               value={this.state.password}
-               onChange={this.update('password')} />
-        <div>
-          <button>{button}</button>
-          <button onClick={this.guestLogin}>Login as guest</button>
-        </div>
-      </form>
+        <form className="session-form" onSubmit={this.handleSubmit}>
+          <header>
+            <h1>{button}</h1>
+          </header>
+          {this.renderErrors()}
+          <input type="text"
+                 placeholder="Username"
+                 value={this.state.username}
+                 onChange={this.update('username')} />
+          <input type="password"
+                 placeholder="Password"
+                 value={this.state.password}
+                 onChange={this.update('password')} />
+          <div>
+            <button>{button}</button>
+            <button onClick={this.guestLogin}>Login as guest</button>
+          </div>
+        </form>
     )
   }
 }

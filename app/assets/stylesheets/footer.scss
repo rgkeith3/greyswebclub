@@ -1,5 +1,25 @@
 @import 'variables';
 
 .site-footer {
-  background-color: yellow;
+  position: relative;
+  width: auto;
+  display: flex;
+  justify-content: space-around;
+
+  padding: 10px;
+
+  p, a {
+    font-size: 12px;
+    font-family: $text;
+    text-decoration: none;
+    color: $grey;
+    transition: .1s;
+  }
+
+  a {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
 }

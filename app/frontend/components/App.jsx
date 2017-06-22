@@ -8,6 +8,11 @@ import ExploreContainer from './explore/explore_container'
 import UserDetailContainer from './user_detail/user_detail_container'
 import PostShowContainer from './dashboard/post_show_container'
 import Welcome from './welcome'
+import Terms from './terms'
+import Privacy from './privacy'
+import Jobs from './jobs'
+import Support from './support'
+import Footer from './footer/footer'
 import { AuthRoute, ProtectedRoute, DashRoute } from '../util/route_util'
 
 const App = () => (
@@ -21,13 +26,15 @@ const App = () => (
         <Route path="/user/:id" component={UserDetailContainer} />
         <Route path="/posts/:id" component={PostShowContainer} />
         <Route path="/explore" component={ExploreContainer} />
+        <Route path="/terms" component={Terms} />
+        <Route path="/privacy" component={Privacy} />
+        <Route path="/jobs" component={Jobs} />
+        <Route path="/support" component={Support} />
         <ProtectedRoute path="/dashboard" render={DashboardContainer} />
         <DashRoute path="/" />
       </Switch>
     </section>
-    <footer className='site-footer'>
-      funthings will go here
-    </footer>
+    <Route path='/' component={Footer} />
   </div>
 )
 

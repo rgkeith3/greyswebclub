@@ -105,6 +105,9 @@ class Greeting extends React.Component {
       return (
         <section className="greeting">
           <div className="left-side">
+            <Link to='/welcome'>
+              <h1>WC</h1>
+            </Link>
             <input type="text"
                    value={this.state.query}
                    placeholder="Search"
@@ -149,6 +152,9 @@ class Greeting extends React.Component {
       return (
         <section className="greeting">
           <div className="left-side">
+            <Link to='/welcome'>
+              <h1>WC</h1>
+            </Link>
             <input type="text"
                    value={this.state.query}
                    placeholder="Search"
